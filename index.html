@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Word Metal — Força Industrial. Inteligência Digital.</title>
+<meta name="description" content="Metalúrgica especializada em caldeiras, alta pressão, tubulação industrial e tecnologia 4.0. Norte do Paraná. 10 anos de experiência.">
+<meta name="keywords" content="metalúrgica Londrina, caldeira NR-13, manutenção industrial, tubulação industrial, Norte Paraná, manutenção preditiva">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --preto:#08080A;--grafite:#111113;--aco:#191919;--borda:#222224;--borda2:#2E2E30;
+  --laranja:#FF5500;--laranja2:#FF7733;--amarelo:#FFB800;
+  --verde:#00C47A;--azul:#2B8EFF;--vermelho:#FF3B3B;
+  --prata:#999;--branco:#EFEFEF;--branco2:#CECECE;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{background:var(--preto);color:var(--branco);font-family:'Barlow',sans-serif;overflow-x:hidden;}
+
+/* NOISE */
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:.4;}
+
+/* ══ NAV ══ */
+#navbar{position:fixed;top:0;left:0;right:0;z-index:1000;transition:all .4s;}
+#navbar.scrolled{background:rgba(8,8,10,.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--borda);}
+.nav-inner{max-width:1280px;margin:0 auto;padding:20px 40px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:5px;text-decoration:none;color:var(--branco);}
+.nav-logo span{color:var(--laranja);}
+.nav-links{display:flex;align-items:center;gap:32px;}
+.nav-links a{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;text-decoration:none;color:var(--prata);text-transform:uppercase;transition:color .2s;}
+.nav-links a:hover{color:var(--branco);}
+.nav-cta{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;padding:10px 22px;background:var(--laranja);color:#000;text-decoration:none;font-weight:700;text-transform:uppercase;transition:background .2s;}
+.nav-cta:hover{background:var(--laranja2);}
+.nav-mobile-btn{display:none;background:none;border:1px solid var(--borda2);color:var(--branco);padding:8px 12px;cursor:pointer;font-size:18px;}
+.mobile-menu{display:none;position:fixed;inset:0;background:rgba(8,8,10,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:32px;}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:4px;text-decoration:none;color:var(--branco);transition:color .2s;}
+.mobile-menu a:hover{color:var(--laranja);}
+.mobile-close{position:absolute;top:24px;right:24px;background:none;border:none;color:var(--prata);font-size:28px;cursor:pointer;}
+
+/* ══ HERO ══ */
+#hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden;padding-top:80px;}
+.hero-grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,85,0,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,85,0,.035) 1px,transparent 1px);background-size:64px 64px;}
+.hero-glow{position:absolute;width:700px;height:700px;background:radial-gradient(circle,rgba(255,85,0,.1) 0%,transparent 65%);top:-100px;left:-200px;pointer-events:none;}
+.hero-glow2{position:absolute;width:400px;height:400px;background:radial-gradient(circle,rgba(43,142,255,.06) 0%,transparent 70%);bottom:0;right:100px;pointer-events:none;}
+
+.hero-left{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;padding:80px 60px 80px 80px;}
+.hero-eyebrow{display:flex;align-items:center;gap:10px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--laranja);text-transform:uppercase;margin-bottom:28px;opacity:0;animation:fadeUp .8s .1s forwards;}
+.hero-eyebrow::before{content:'';width:28px;height:1px;background:var(--laranja);}
+.hero-h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(60px,7.5vw,108px);line-height:.9;letter-spacing:2px;margin-bottom:28px;opacity:0;animation:fadeUp .8s .25s forwards;}
+.hero-h1 .line2{color:var(--laranja);}
+.hero-h1 .line3{color:var(--branco2);font-size:.55em;letter-spacing:6px;}
+.hero-desc{font-size:17px;font-weight:300;color:var(--branco2);line-height:1.75;max-width:420px;margin-bottom:40px;border-left:2px solid var(--laranja);padding-left:18px;opacity:0;animation:fadeUp .8s .4s forwards;}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;opacity:0;animation:fadeUp .8s .55s forwards;}
+.btn-primary{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:2px;padding:14px 28px;background:var(--laranja);color:#000;text-decoration:none;font-weight:700;text-transform:uppercase;transition:all .2s;display:inline-flex;align-items:center;gap:8px;}
+.btn-primary:hover{background:var(--laranja2);transform:translateY(-2px);}
+.btn-ghost{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:2px;padding:14px 28px;background:transparent;border:1px solid var(--borda2);color:var(--branco2);text-decoration:none;text-transform:uppercase;transition:all .2s;display:inline-flex;align-items:center;gap:8px;}
+.btn-ghost:hover{border-color:var(--laranja);color:var(--branco);}
+
+.hero-stats{display:flex;gap:0;margin-top:56px;border-top:1px solid var(--borda);padding-top:32px;opacity:0;animation:fadeUp .8s .7s forwards;}
+.hstat{flex:1;padding-right:28px;border-right:1px solid var(--borda);}
+.hstat:last-child{border-right:none;padding-right:0;padding-left:28px;}
+.hstat:not(:first-child):not(:last-child){padding:0 28px;}
+.hstat-num{font-family:'Bebas Neue',sans-serif;font-size:44px;color:var(--laranja);line-height:1;}
+.hstat-lbl{font-size:11px;font-weight:300;color:var(--prata);margin-top:2px;line-height:1.4;}
+
+.hero-right{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.hero-visual{position:relative;width:420px;height:420px;}
+/* Animated industrial diagram */
+.hv-ring{position:absolute;border-radius:50%;border:1px solid rgba(255,85,0,.2);animation:spin linear infinite;}
+.hv-ring1{inset:0;animation-duration:30s;}
+.hv-ring2{inset:40px;border-color:rgba(255,85,0,.12);animation-duration:20s;animation-direction:reverse;}
+.hv-ring3{inset:80px;border-color:rgba(43,142,255,.08);animation-duration:45s;}
+.hv-dot{position:absolute;width:8px;height:8px;background:var(--laranja);border-radius:50%;box-shadow:0 0 10px rgba(255,85,0,.6);}
+.hv-dot1{top:-4px;left:50%;transform:translateX(-50%);}
+.hv-dot2{bottom:-4px;left:50%;transform:translateX(-50%);}
+.hv-core{position:absolute;inset:120px;border:1px solid var(--borda2);background:var(--grafite);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;}
+.hv-wm{font-family:'Bebas Neue',sans-serif;font-size:54px;letter-spacing:4px;color:var(--branco);text-shadow:0 0 30px rgba(255,85,0,.3);}
+.hv-wm span{color:var(--laranja);}
+.hv-sep{width:40px;height:1px;background:var(--laranja);}
+.hv-since{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:3px;color:var(--prata);}
+/* Floating chips */
+.hv-chip{position:absolute;background:var(--aco);border:1px solid var(--borda2);padding:8px 14px;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:1px;color:var(--laranja);white-space:nowrap;animation:float ease-in-out infinite;}
+.hv-chip1{top:30px;right:10px;animation-duration:3.2s;animation-delay:0s;}
+.hv-chip2{bottom:60px;left:0;animation-duration:4s;animation-delay:.8s;}
+.hv-chip3{top:50%;left:-20px;transform:translateY(-50%);animation-duration:3.6s;animation-delay:.4s;}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+@keyframes spin{to{transform:rotate(360deg);}}
+
+/* ══ TICKER ══ */
+.ticker{background:var(--laranja);padding:12px 0;overflow:hidden;white-space:nowrap;}
+.ticker-inner{display:inline-flex;gap:0;animation:ticker 25s linear infinite;}
+.ticker-item{font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:4px;color:#000;padding:0 40px;}
+.ticker-sep{font-size:18px;color:rgba(0,0,0,.3);}
+@keyframes ticker{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* ══ SECTIONS BASE ══ */
+.section{padding:100px 40px;max-width:1280px;margin:0 auto;}
+.section-full{padding:100px 0;}
+.sec-label{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:4px;color:var(--laranja);text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+.sec-label::after{content:'';width:40px;height:1px;background:var(--laranja);}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,5vw,68px);letter-spacing:2px;line-height:1;margin-bottom:16px;}
+.sec-sub{font-size:17px;font-weight:300;color:var(--branco2);line-height:1.7;max-width:560px;}
+
+/* ══ DIFERENCIAIS ══ */
+#diferenciais{background:var(--grafite);border-top:1px solid var(--borda);border-bottom:1px solid var(--borda);}
+.dif-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--borda);margin-top:64px;}
+.dif-card{background:var(--grafite);padding:40px 32px;position:relative;overflow:hidden;transition:background .3s;}
+.dif-card:hover{background:var(--aco);}
+.dif-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--laranja);transform:scaleX(0);transition:transform .3s;transform-origin:left;}
+.dif-card:hover::before{transform:scaleX(1);}
+.dif-icon{font-size:36px;margin-bottom:20px;display:block;}
+.dif-title{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:2px;margin-bottom:10px;}
+.dif-text{font-size:14px;font-weight:300;color:var(--prata);line-height:1.7;}
+
+/* ══ SERVIÇOS ══ */
+#servicos{background:var(--preto);}
+.srv-intro{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;margin-bottom:64px;}
+.srv-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--borda);}
+.srv-card{background:var(--aco);padding:40px;cursor:pointer;transition:all .3s;position:relative;overflow:hidden;border-bottom:2px solid transparent;}
+.srv-card:hover{background:#1E1E1E;border-bottom-color:var(--laranja);}
+.srv-card.featured{border-bottom-color:var(--laranja);background:#1A1A1C;}
+.srv-badge{display:inline-block;font-family:'Space Mono',monospace;font-size:8px;letter-spacing:2px;padding:3px 8px;border:1px solid rgba(255,85,0,.3);color:var(--laranja);text-transform:uppercase;margin-bottom:16px;}
+.srv-badge.novo{background:rgba(255,85,0,.1);}
+.srv-icon{font-size:32px;margin-bottom:16px;display:block;}
+.srv-name{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:2px;margin-bottom:10px;}
+.srv-desc{font-size:14px;font-weight:300;color:var(--prata);line-height:1.7;margin-bottom:20px;}
+.srv-tags{display:flex;flex-wrap:wrap;gap:6px;}
+.srv-tag{font-family:'Space Mono',monospace;font-size:9px;padding:3px 8px;background:var(--grafite);border:1px solid var(--borda2);color:var(--prata);}
+.srv-arrow{position:absolute;bottom:20px;right:24px;font-size:20px;color:var(--borda2);transition:all .3s;}
+.srv-card:hover .srv-arrow{color:var(--laranja);transform:translateX(4px);}
+
+/* ══ 4.0 BANNER ══ */
+#banner40{background:var(--laranja);padding:80px 40px;position:relative;overflow:hidden;}
+#banner40::before{content:'4.0';font-family:'Bebas Neue',sans-serif;font-size:300px;color:rgba(0,0,0,.08);position:absolute;right:-20px;top:50%;transform:translateY(-50%);line-height:1;pointer-events:none;letter-spacing:-10px;}
+.banner40-inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+.banner40-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,5vw,72px);color:#000;line-height:1;letter-spacing:2px;margin-bottom:16px;}
+.banner40-sub{font-size:17px;font-weight:500;color:rgba(0,0,0,.7);line-height:1.6;}
+.banner40-items{display:flex;flex-direction:column;gap:16px;}
+.banner40-item{display:flex;align-items:center;gap:14px;padding:16px 20px;background:rgba(0,0,0,.08);border-left:3px solid rgba(0,0,0,.2);}
+.banner40-item-icon{font-size:22px;flex-shrink:0;}
+.banner40-item-text{font-size:14px;font-weight:600;color:#000;}
+.banner40-item-sub{font-size:12px;font-weight:400;color:rgba(0,0,0,.6);}
+
+/* ══ PORTFÓLIO ══ */
+#portfolio{background:var(--grafite);border-top:1px solid var(--borda);}
+.port-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--borda);margin-top:60px;}
+.port-card{background:var(--aco);aspect-ratio:4/3;position:relative;overflow:hidden;cursor:pointer;transition:all .3s;}
+.port-card:hover .port-overlay{opacity:1;}
+.port-card:hover .port-visual{transform:scale(1.04);}
+.port-visual{width:100%;height:100%;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;transition:transform .4s;position:relative;}
+/* Industrial SVG illustrations */
+.port-visual svg{width:80px;height:80px;opacity:.3;transition:opacity .3s;}
+.port-card:hover .port-visual svg{opacity:.5;}
+.port-bg-text{font-family:'Bebas Neue',sans-serif;font-size:90px;color:rgba(255,255,255,.03);position:absolute;inset:0;display:flex;align-items:center;justify-content:center;letter-spacing:-2px;pointer-events:none;}
+.port-overlay{position:absolute;inset:0;background:rgba(255,85,0,.85);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;opacity:0;transition:opacity .3s;}
+.port-overlay-title{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;color:#000;text-align:center;margin-bottom:6px;}
+.port-overlay-sub{font-size:13px;font-weight:600;color:rgba(0,0,0,.7);text-align:center;}
+.port-label{position:absolute;bottom:0;left:0;right:0;padding:20px;background:linear-gradient(transparent,rgba(8,8,10,.9));}
+.port-label-title{font-size:14px;font-weight:600;margin-bottom:2px;}
+.port-label-sub{font-family:'Space Mono',monospace;font-size:9px;color:var(--prata);letter-spacing:1px;}
+.port-soon{position:absolute;top:12px;right:12px;font-family:'Space Mono',monospace;font-size:8px;letter-spacing:1px;padding:3px 8px;background:rgba(255,184,0,.15);border:1px solid rgba(255,184,0,.3);color:var(--amarelo);}
+
+/* ══ SOBRE ══ */
+#sobre{background:var(--preto);}
+.sobre-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;margin-top:60px;}
+.sobre-left{}
+.sobre-text{font-size:17px;font-weight:300;color:var(--branco2);line-height:1.8;margin-bottom:20px;}
+.sobre-text strong{color:var(--branco);font-weight:600;}
+.sobre-values{display:flex;flex-direction:column;gap:12px;margin-top:32px;}
+.sobre-val{display:flex;align-items:flex-start;gap:14px;padding:16px;background:var(--grafite);border:1px solid var(--borda);}
+.sobre-val-icon{font-size:20px;flex-shrink:0;margin-top:2px;}
+.sobre-val-title{font-size:14px;font-weight:600;margin-bottom:3px;}
+.sobre-val-text{font-size:13px;font-weight:300;color:var(--prata);line-height:1.5;}
+.sobre-right{}
+.sobre-timeline{display:flex;flex-direction:column;gap:0;}
+.st-item{display:grid;grid-template-columns:80px 1px 1fr;gap:0 24px;padding-bottom:32px;}
+.st-item:last-child{padding-bottom:0;}
+.st-year{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--laranja);text-align:right;padding-top:2px;}
+.st-line{background:var(--borda);position:relative;}
+.st-dot{position:absolute;width:10px;height:10px;background:var(--laranja);border-radius:50%;top:6px;left:50%;transform:translateX(-50%);box-shadow:0 0 8px rgba(255,85,0,.5);}
+.st-content{padding-bottom:32px;border-bottom:1px solid var(--borda);}
+.st-item:last-child .st-content{border-bottom:none;}
+.st-title{font-size:15px;font-weight:600;margin-bottom:4px;}
+.st-desc{font-size:13px;font-weight:300;color:var(--prata);line-height:1.5;}
+
+/* ══ EQUIPE ══ */
+.team-section{background:var(--grafite);border-top:1px solid var(--borda);padding:100px 40px;}
+.team-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--borda);max-width:1280px;margin:60px auto 0;}
+.tm-card{background:var(--aco);padding:28px 20px;text-align:center;transition:background .3s;}
+.tm-card:hover{background:#1E1E1E;}
+.tm-avatar{width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:22px;margin:0 auto 14px;}
+.tm-name{font-size:14px;font-weight:600;margin-bottom:4px;}
+.tm-role{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:1px;color:var(--prata);text-transform:uppercase;line-height:1.4;}
+.av-o{background:rgba(255,85,0,.15);color:var(--laranja);border:1px solid rgba(255,85,0,.25);}
+.av-b{background:rgba(43,142,255,.15);color:var(--azul);border:1px solid rgba(43,142,255,.25);}
+.av-g{background:rgba(0,196,122,.15);color:var(--verde);border:1px solid rgba(0,196,122,.25);}
+.av-y{background:rgba(255,184,0,.15);color:var(--amarelo);border:1px solid rgba(255,184,0,.25);}
+.av-r{background:rgba(255,59,59,.15);color:var(--vermelho);border:1px solid rgba(255,59,59,.25);}
+
+/* ══ ORÇAMENTO ══ */
+#orcamento{background:var(--preto);border-top:1px solid var(--borda);}
+.orc-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:start;margin-top:60px;}
+.orc-info{}
+.orc-contacts{display:flex;flex-direction:column;gap:12px;margin-top:32px;}
+.orc-contact{display:flex;align-items:center;gap:14px;padding:14px 18px;background:var(--grafite);border:1px solid var(--borda);}
+.orc-contact-icon{font-size:18px;}
+.orc-contact-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:1px;color:var(--prata);margin-bottom:2px;}
+.orc-contact-val{font-size:14px;font-weight:500;}
+.orc-form{background:var(--grafite);border:1px solid var(--borda);padding:40px;}
+.form-title{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:2px;margin-bottom:28px;}
+.fg{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;}
+.fl{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--prata);text-transform:uppercase;}
+.fi{background:var(--aco);border:1px solid var(--borda2);color:var(--branco);padding:12px 16px;font-family:'Barlow',sans-serif;font-size:14px;width:100%;outline:none;transition:border-color .2s;}
+.fi:focus{border-color:var(--laranja);}
+.fs{background:var(--aco);border:1px solid var(--borda2);color:var(--branco);padding:12px 16px;font-family:'Barlow',sans-serif;font-size:14px;width:100%;outline:none;cursor:pointer;}
+.ft{background:var(--aco);border:1px solid var(--borda2);color:var(--branco);padding:12px 16px;font-family:'Barlow',sans-serif;font-size:14px;width:100%;outline:none;resize:vertical;min-height:100px;transition:border-color .2s;}
+.ft:focus{border-color:var(--laranja);}
+.fr2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.submit-btn{width:100%;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:3px;padding:16px;background:var(--laranja);color:#000;border:none;cursor:pointer;font-weight:700;text-transform:uppercase;transition:background .2s;margin-top:8px;}
+.submit-btn:hover{background:var(--laranja2);}
+.form-success{display:none;text-align:center;padding:32px;background:rgba(0,196,122,.05);border:1px solid rgba(0,196,122,.2);}
+.form-success-icon{font-size:48px;margin-bottom:12px;}
+.form-success-title{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:2px;color:var(--verde);margin-bottom:8px;}
+.form-success-text{font-size:14px;color:var(--prata);}
+
+/* ══ FOOTER ══ */
+footer{background:var(--grafite);border-top:1px solid var(--borda);padding:60px 40px 32px;}
+.footer-inner{max-width:1280px;margin:0 auto;}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:60px;margin-bottom:48px;}
+.footer-brand-logo{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:5px;margin-bottom:12px;}
+.footer-brand-logo span{color:var(--laranja);}
+.footer-brand-text{font-size:13px;font-weight:300;color:var(--prata);line-height:1.7;margin-bottom:16px;}
+.footer-col-title{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--laranja);text-transform:uppercase;margin-bottom:16px;}
+.footer-links{display:flex;flex-direction:column;gap:8px;}
+.footer-links a{font-size:13px;color:var(--prata);text-decoration:none;transition:color .2s;}
+.footer-links a:hover{color:var(--branco);}
+.footer-bottom{border-top:1px solid var(--borda);padding-top:24px;display:flex;justify-content:space-between;align-items:center;}
+.footer-copy{font-family:'Space Mono',monospace;font-size:10px;color:rgba(150,150,150,.4);letter-spacing:1px;}
+.footer-nr{font-family:'Space Mono',monospace;font-size:9px;color:rgba(255,85,0,.4);letter-spacing:1px;}
+
+/* ══ WHATSAPP BTN ══ */
+.wa-btn{position:fixed;bottom:28px;right:28px;z-index:500;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,.3);transition:transform .3s,box-shadow .3s;}
+.wa-btn:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(37,211,102,.5);}
+.wa-btn svg{width:28px;height:28px;fill:#fff;}
+
+/* ══ REVEAL ANIMATION ══ */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
+
+/* ══ RESPONSIVE ══ */
+@media(max-width:900px){
+  #hero{grid-template-columns:1fr;}
+  .hero-right{display:none;}
+  .hero-left{padding:80px 24px 60px;}
+  .nav-links,.nav-cta{display:none;}
+  .nav-mobile-btn{display:block;}
+  .section{padding:64px 24px;}
+  .dif-grid,.srv-grid{grid-template-columns:1fr;}
+  .banner40-inner,.sobre-grid,.orc-grid,.srv-intro{grid-template-columns:1fr;gap:40px;}
+  .port-grid{grid-template-columns:1fr 1fr;}
+  .team-grid{grid-template-columns:repeat(2,1fr);}
+  .footer-top{grid-template-columns:1fr 1fr;gap:32px;}
+  .fr2{grid-template-columns:1fr;}
+  .hero-stats{flex-direction:column;gap:20px;}
+  .hstat,.hstat:last-child,.hstat:not(:first-child):not(:last-child){border:none;padding:0;}
+}
+</style>
+</head>
+<body>
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/5543999349583?text=Olá!%20Vim%20pelo%20site%20da%20Word%20Metal%20e%20gostaria%20de%20um%20orçamento." class="wa-btn" target="_blank" title="Fale conosco no WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">WORD<span>METAL</span></a>
+    <div class="nav-links">
+      <a href="#servicos">Serviços</a>
+      <a href="#portfolio">Portfólio</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#orcamento">Contato</a>
+    </div>
+    <a href="#orcamento" class="nav-cta">Solicitar Orçamento →</a>
+    <button class="nav-mobile-btn" onclick="document.getElementById('mobile-menu').classList.add('open')">☰</button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <button class="mobile-close" onclick="document.getElementById('mobile-menu').classList.remove('open')">✕</button>
+  <a href="#servicos" onclick="document.getElementById('mobile-menu').classList.remove('open')">Serviços</a>
+  <a href="#portfolio" onclick="document.getElementById('mobile-menu').classList.remove('open')">Portfólio</a>
+  <a href="#sobre" onclick="document.getElementById('mobile-menu').classList.remove('open')">Sobre</a>
+  <a href="#orcamento" onclick="document.getElementById('mobile-menu').classList.remove('open')">Orçamento</a>
+</div>
+
+<!-- ══ HERO ══ -->
+<section id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-left">
+    <div class="hero-eyebrow">Norte do Paraná — Desde 2015</div>
+    <h1 class="hero-h1">
+      FORÇA<br>
+      <span class="line2">INDUSTRIAL.</span><br>
+      <span class="line3">INTELIGÊNCIA DIGITAL.</span>
+    </h1>
+    <p class="hero-desc">Metalúrgica especializada em caldeiras, alta pressão e instalações industriais — agora com tecnologia IoT, manutenção preditiva e cibersegurança industrial integradas.</p>
+    <div class="hero-actions">
+      <a href="#orcamento" class="btn-primary">Solicitar Orçamento →</a>
+      <a href="#servicos" class="btn-ghost">Ver Serviços</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hstat"><div class="hstat-num">10+</div><div class="hstat-lbl">Anos de<br>experiência</div></div>
+      <div class="hstat"><div class="hstat-num">200+</div><div class="hstat-lbl">Projetos<br>entregues</div></div>
+      <div class="hstat"><div class="hstat-num">6</div><div class="hstat-lbl">Novos serviços<br>4.0</div></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-visual">
+      <div class="hv-ring hv-ring1"><div class="hv-dot hv-dot1"></div><div class="hv-dot hv-dot2"></div></div>
+      <div class="hv-ring hv-ring2"></div>
+      <div class="hv-ring hv-ring3"></div>
+      <div class="hv-core">
+        <div class="hv-wm">W<span>M</span></div>
+        <div class="hv-sep"></div>
+        <div class="hv-since">SINCE 2015</div>
+      </div>
+      <div class="hv-chip hv-chip1">⚙ NR-13</div>
+      <div class="hv-chip hv-chip2">🔥 CALDEIRAS</div>
+      <div class="hv-chip hv-chip3">📡 IoT</div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item">CALDEIRAS & ALTA PRESSÃO</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">NR-13 CERTIFICADO</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">MANUTENÇÃO PREDITIVA IoT</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">FUNILARIA INDUSTRIAL</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">GÊMEO DIGITAL BIM</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">CIBERSEGURANÇA INDUSTRIAL</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">NORTE DO PARANÁ</span><span class="ticker-sep">◆</span>
+    <!-- repeat for seamless -->
+    <span class="ticker-item">CALDEIRAS & ALTA PRESSÃO</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">NR-13 CERTIFICADO</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">MANUTENÇÃO PREDITIVA IoT</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">FUNILARIA INDUSTRIAL</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">GÊMEO DIGITAL BIM</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">CIBERSEGURANÇA INDUSTRIAL</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">NORTE DO PARANÁ</span><span class="ticker-sep">◆</span>
+  </div>
+</div>
+
+<!-- ══ DIFERENCIAIS ══ -->
+<div id="diferenciais">
+  <div class="section">
+    <div class="sec-label">Por que Word Metal</div>
+    <h2 class="sec-title reveal">O QUE NOS<br>DIFERENCIA</h2>
+    <div class="dif-grid reveal">
+      <div class="dif-card">
+        <span class="dif-icon">🔩</span>
+        <div class="dif-title">EXPERTISE TÉCNICA REAL</div>
+        <p class="dif-text">10 anos trabalhando com caldeiras, alta pressão e instalações industriais no Norte do Paraná. Conhecimento que só se adquire na prática — não em apostila.</p>
+      </div>
+      <div class="dif-card">
+        <span class="dif-icon">💻</span>
+        <div class="dif-title">TIME DE TECNOLOGIA INTERNO</div>
+        <p class="dif-text">Engenheiro de software, analista de sistemas, cientista de dados e especialista em cibersegurança integrados à operação técnica. Único na região.</p>
+      </div>
+      <div class="dif-card">
+        <span class="dif-icon">🛡️</span>
+        <div class="dif-title">SEGURANÇA & CONFORMIDADE</div>
+        <p class="dif-text">Serviços alinhados às normas NR-13, NR-12 e regulamentações de segurança industrial. Documentação completa e rastreável para cada projeto.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SERVIÇOS ══ -->
+<section id="servicos">
+  <div class="section">
+    <div class="srv-intro">
+      <div>
+        <div class="sec-label">O que fazemos</div>
+        <h2 class="sec-title reveal">SERVIÇOS<br>WORD METAL</h2>
+      </div>
+      <div>
+        <p class="sec-sub reveal">Da manutenção tradicional à tecnologia de ponta — uma carteira completa de serviços para indústrias do Norte do Paraná e região.</p>
+      </div>
+    </div>
+    <div class="srv-grid reveal">
+
+      <div class="srv-card featured">
+        <span class="srv-badge">CORE</span>
+        <span class="srv-icon">🔥</span>
+        <div class="srv-name">Caldeiras & Alta Pressão</div>
+        <p class="srv-desc">Manutenção, reforma, inspeção e adequação de caldeiras e vasos de pressão. Laudos NR-13 completos com documentação digital rastreável.</p>
+        <div class="srv-tags"><span class="srv-tag">NR-13</span><span class="srv-tag">Manutenção</span><span class="srv-tag">Inspeção</span><span class="srv-tag">Laudo</span></div>
+        <div class="srv-arrow">→</div>
+      </div>
+
+      <div class="srv-card">
+        <span class="srv-badge">CORE</span>
+        <span class="srv-icon">🔧</span>
+        <div class="srv-name">Funilaria & Tubulação Industrial</div>
+        <p class="srv-desc">Fabricação, instalação e reforma de sistemas de tubulação industrial, estruturas metálicas e funilaria para ambientes industriais de alta exigência.</p>
+        <div class="srv-tags"><span class="srv-tag">Tubulação</span><span class="srv-tag">Funilaria</span><span class="srv-tag">Soldagem</span></div>
+        <div class="srv-arrow">→</div>
+      </div>
+
+      <div class="srv-card">
+        <span class="srv-badge novo">4.0 NOVO</span>
+        <span class="srv-icon">📡</span>
+        <div class="srv-name">Manutenção Preditiva IoT</div>
+        <p class="srv-desc">Sensores instalados nos seus equipamentos monitoram temperatura, pressão e vibração em tempo real. Alertas antes de falhas. Menos paradas, mais produção.</p>
+        <div class="srv-tags"><span class="srv-tag">IoT</span><span class="srv-tag">Sensores</span><span class="srv-tag">Dashboard</span><span class="srv-tag">Preditiva</span></div>
+        <div class="srv-arrow">→</div>
+      </div>
+
+      <div class="srv-card">
+        <span class="srv-badge novo">4.0 NOVO</span>
+        <span class="srv-icon">⚡</span>
+        <div class="srv-name">Retrofit & Automação Industrial</div>
+        <p class="srv-desc">Modernize equipamentos antigos com CLPs, painéis digitais e controle remoto. Custo até 5x menor que substituição — com 80% dos benefícios de um equipamento novo.</p>
+        <div class="srv-tags"><span class="srv-tag">CLP</span><span class="srv-tag">HMI</span><span class="srv-tag">Automação</span><span class="srv-tag">Retrofit</span></div>
+        <div class="srv-arrow">→</div>
+      </div>
+
+      <div class="srv-card">
+        <span class="srv-badge novo">4.0 NOVO</span>
+        <span class="srv-icon">🔒</span>
+        <div class="srv-name">Cibersegurança Industrial OT/ICS</div>
+        <p class="srv-desc">Proteção de sistemas SCADA, CLPs e redes industriais contra ataques cibernéticos. Auditoria, segmentação e plano de resposta para ambientes OT.</p>
+        <div class="srv-tags"><span class="srv-tag">SCADA</span><span class="srv-tag">OT/ICS</span><span class="srv-tag">Auditoria</span></div>
+        <div class="srv-arrow">→</div>
+      </div>
+
+      <div class="srv-card">
+        <span class="srv-badge novo">4.0 NOVO</span>
+        <span class="srv-icon">🏗️</span>
+        <div class="srv-name">Gêmeo Digital & BIM Industrial</div>
+        <p class="srv-desc">Digitalização 3D completa da sua planta industrial — tubulações, caldeiras e equipamentos modelados digitalmente para facilitar reformas, auditorias e expansões.</p>
+        <div class="srv-tags"><span class="srv-tag">BIM</span><span class="srv-tag">3D</span><span class="srv-tag">Digital Twin</span></div>
+        <div class="srv-arrow">→</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ BANNER 4.0 ══ -->
+<div id="banner40">
+  <div class="banner40-inner">
+    <div>
+      <div class="banner40-title">A METALÚRGICA<br>QUE PENSA<br>DIFERENTE.</div>
+      <p class="banner40-sub">Somos a única empresa do Norte do Paraná que une expertise técnica industrial com um time completo de tecnologia — entregando resultados que nenhum concorrente consegue.</p>
+    </div>
+    <div class="banner40-items">
+      <div class="banner40-item">
+        <div class="banner40-item-icon">📊</div>
+        <div><div class="banner40-item-text">Manutenção como Serviço (MaaS)</div><div class="banner40-item-sub">Contrato anual com monitoramento contínuo, relatórios mensais e SLA garantido</div></div>
+      </div>
+      <div class="banner40-item">
+        <div class="banner40-item-icon">📋</div>
+        <div><div class="banner40-item-text">Laudos Digitais Rastreáveis</div><div class="banner440-item-sub">QR Code em cada equipamento com histórico completo de NR-13 acessível em segundos</div></div>
+      </div>
+      <div class="banner40-item">
+        <div class="banner40-item-icon">🌐</div>
+        <div><div class="banner40-item-text">Plataforma de Gestão de Ativos</div><div class="banner40-item-sub">Seus equipamentos monitorados e documentados em uma plataforma desenvolvida pela Word Metal</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PORTFÓLIO ══ -->
+<div id="portfolio">
+  <div class="section">
+    <div class="sec-label">Nosso trabalho</div>
+    <h2 class="sec-title reveal">PORTFÓLIO<br>& CASES</h2>
+    <p class="sec-sub reveal" style="margin-bottom:0;">Projetos entregues com excelência técnica para indústrias do Norte do Paraná e região.</p>
+  </div>
+  <div class="port-grid reveal">
+
+    <div class="port-card">
+      <div class="port-visual" style="background:linear-gradient(135deg,#141414,#1a1a1a);">
+        <div class="port-bg-text">NR13</div>
+        <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="20" y="10" width="40" height="55" rx="2" stroke="#FF5500" stroke-width="2"/><circle cx="40" cy="37" r="12" stroke="#FF5500" stroke-width="2"/><line x1="40" y1="25" x2="40" y2="20" stroke="#FF5500" stroke-width="2"/><line x1="40" y1="49" x2="40" y2="54" stroke="#FF5500" stroke-width="2"/><line x1="28" y1="37" x2="23" y2="37" stroke="#FF5500" stroke-width="2"/><line x1="57" y1="37" x2="52" y2="37" stroke="#FF5500" stroke-width="2"/><rect x="32" y="58" width="16" height="6" rx="1" stroke="#FF5500" stroke-width="1.5"/></svg>
+      </div>
+      <div class="port-overlay"><div class="port-overlay-title">Inspeção NR-13</div><div class="port-overlay-sub">Caldeira 10t — Agroindústria<br>Londrina, PR</div></div>
+      <div class="port-label"><div class="port-label-title">Inspeção & Laudo NR-13</div><div class="port-label-sub">CALDEIRA — LONDRINA</div></div>
+    </div>
+
+    <div class="port-card">
+      <div class="port-visual" style="background:linear-gradient(135deg,#111,#191919);">
+        <div class="port-bg-text">TUB</div>
+        <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 40 Q30 40 30 20 Q30 10 40 10 L70 10" stroke="#FF5500" stroke-width="2.5" fill="none"/><path d="M10 50 Q35 50 35 25 Q35 12 45 12 L70 12" stroke="#FF5500" stroke-width="1.5" opacity=".4" fill="none"/><circle cx="30" cy="40" r="5" fill="#FF5500" opacity=".3"/><circle cx="30" cy="40" r="2" fill="#FF5500"/><path d="M10 40 L10 50" stroke="#FF5500" stroke-width="2"/><path d="M70 10 L70 12" stroke="#FF5500" stroke-width="2"/></svg>
+      </div>
+      <div class="port-overlay"><div class="port-overlay-title">Tubulação Industrial</div><div class="port-overlay-sub">Sistema CO₂ — Frigorífico<br>Cambé, PR</div></div>
+      <div class="port-label"><div class="port-label-title">Instalação de Tubulação CO₂</div><div class="port-label-sub">FRIGORÍFICO — CAMBÉ</div></div>
+    </div>
+
+    <div class="port-card">
+      <div class="port-visual" style="background:linear-gradient(135deg,#0f1a14,#141c14);">
+        <div class="port-bg-text">IoT</div>
+        <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="40" r="8" fill="#00C47A" opacity=".3"/><circle cx="40" cy="40" r="4" fill="#00C47A"/><circle cx="40" cy="40" r="18" stroke="#00C47A" stroke-width="1.5" opacity=".3" stroke-dasharray="3 3"/><circle cx="40" cy="40" r="28" stroke="#00C47A" stroke-width="1" opacity=".15" stroke-dasharray="5 5"/><line x1="40" y1="12" x2="40" y2="22" stroke="#00C47A" stroke-width="1.5" opacity=".5"/><line x1="58" y1="22" x2="51" y2="29" stroke="#00C47A" stroke-width="1.5" opacity=".5"/><line x1="68" y1="40" x2="58" y2="40" stroke="#00C47A" stroke-width="1.5" opacity=".5"/></svg>
+        <span class="port-soon">EM BREVE</span>
+      </div>
+      <div class="port-overlay"><div class="port-overlay-title">Manutenção Preditiva</div><div class="port-overlay-sub">Monitoramento IoT<br>Projeto Piloto — 2026</div></div>
+      <div class="port-label"><div class="port-label-title">Monitoramento Preditivo IoT</div><div class="port-label-sub">PROJETO PILOTO — 2026</div></div>
+    </div>
+
+    <div class="port-card">
+      <div class="port-visual" style="background:linear-gradient(135deg,#141414,#1c1a14);">
+        <div class="port-bg-text">RETR</div>
+        <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="15" y="20" width="24" height="36" rx="2" stroke="#FFB800" stroke-width="2"/><rect x="41" y="26" width="24" height="24" rx="2" stroke="#FFB800" stroke-width="2"/><line x1="39" y1="38" x2="41" y2="38" stroke="#FFB800" stroke-width="2.5"/><circle cx="27" cy="38" r="6" stroke="#FFB800" stroke-width="1.5"/><rect x="44" y="30" width="6" height="4" rx="1" fill="#FFB800" opacity=".4"/><rect x="44" y="36" width="6" height="4" rx="1" fill="#FFB800" opacity=".4"/><rect x="44" y="42" width="6" height="4" rx="1" fill="#FFB800" opacity=".4"/></svg>
+      </div>
+      <div class="port-overlay"><div class="port-overlay-title">Retrofit Industrial</div><div class="port-overlay-sub">Automação de Caldeira Antiga<br>Arapongas, PR</div></div>
+      <div class="port-label"><div class="port-label-title">Retrofit com Automação CLP</div><div class="port-label-sub">CALDEIRA — ARAPONGAS</div></div>
+    </div>
+
+    <div class="port-card">
+      <div class="port-visual" style="background:linear-gradient(135deg,#111318,#141419);">
+        <div class="port-bg-text">SEG</div>
+        <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M40 10 L62 20 L62 42 C62 54 52 64 40 68 C28 64 18 54 18 42 L18 20 Z" stroke="#2B8EFF" stroke-width="2" fill="rgba(43,142,255,0.05)"/><path d="M30 40 L37 47 L52 32" stroke="#2B8EFF" stroke-width="2.5"/></svg>
+      </div>
+      <div class="port-overlay"><div class="port-overlay-title">Adequação de Segurança</div><div class="port-overlay-sub">Linha de Vapor NR-13<br>Usina — Porecatu, PR</div></div>
+      <div class="port-label"><div class="port-label-title">Adequação Linha de Vapor</div><div class="port-label-sub">USINA — PORECATU</div></div>
+    </div>
+
+    <div class="port-card">
+      <div class="port-visual" style="background:linear-gradient(135deg,#0e1420,#101420);">
+        <div class="port-bg-text">BIM</div>
+        <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="20" y="35" width="40" height="25" rx="1" stroke="#2B8EFF" stroke-width="1.5"/><path d="M20 35 L40 20 L60 35" stroke="#2B8EFF" stroke-width="1.5"/><line x1="40" y1="20" x2="40" y2="60" stroke="#2B8EFF" stroke-width="1" opacity=".4"/><line x1="20" y1="35" x2="60" y2="35" stroke="#2B8EFF" stroke-width="1" opacity=".4"/><circle cx="40" cy="20" r="3" fill="#2B8EFF" opacity=".5"/><circle cx="20" cy="35" r="2" fill="#2B8EFF" opacity=".5"/><circle cx="60" cy="35" r="2" fill="#2B8EFF" opacity=".5"/></svg>
+        <span class="port-soon">EM BREVE</span>
+      </div>
+      <div class="port-overlay"><div class="port-overlay-title">Gêmeo Digital BIM</div><div class="port-overlay-sub">Digitalização de Planta Industrial<br>Lançamento 2026</div></div>
+      <div class="port-label"><div class="port-label-title">Gêmeo Digital Industrial</div><div class="port-label-sub">SERVIÇO 4.0 — 2026</div></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══ SOBRE ══ -->
+<section id="sobre">
+  <div class="section">
+    <div class="sec-label">Nossa história</div>
+    <h2 class="sec-title reveal">10 ANOS DE<br>WORD METAL</h2>
+    <div class="sobre-grid">
+      <div class="sobre-left reveal">
+        <p class="sobre-text">A <strong>Word Metal</strong> nasceu no Norte do Paraná com uma missão clara: entregar serviços de metalurgia industrial com <strong>qualidade, segurança e responsabilidade técnica</strong> que grandes indústrias da região mereciam ter.</p>
+        <p class="sobre-text">Ao longo de 10 anos, nos especializamos em caldeiras, alta pressão e instalações industriais de alta complexidade — construindo uma reputação sólida baseada em resultado e confiança.</p>
+        <p class="sobre-text">Em 2025, demos o próximo passo: integramos um <strong>time completo de tecnologia</strong> à nossa operação técnica. Hoje somos a única empresa da região capaz de entregar não só o serviço físico, mas também o monitoramento, a digitalização e a proteção dos sistemas dos nossos clientes.</p>
+        <div class="sobre-values">
+          <div class="sobre-val"><span class="sobre-val-icon">🔩</span><div><div class="sobre-val-title">Precisão Técnica</div><div class="sobre-val-text">Cada serviço executado com rigor técnico e documentado conforme normas vigentes.</div></div></div>
+          <div class="sobre-val"><span class="sobre-val-icon">🤝</span><div><div class="sobre-val-title">Parceria de Longo Prazo</div><div class="sobre-val-text">Não vendemos serviço — construímos relações. Nossos clientes voltam porque confiam.</div></div></div>
+          <div class="sobre-val"><span class="sobre-val-icon">💡</span><div><div class="sobre-val-title">Inovação com Raízes</div><div class="sobre-val-text">Tecnologia de ponta sem perder a essência: mão na massa, conhecimento real, resultado garantido.</div></div></div>
+        </div>
+      </div>
+      <div class="sobre-right reveal">
+        <div class="sobre-timeline">
+          <div class="st-item"><div class="st-year">2015</div><div class="st-line"><div class="st-dot"></div></div><div class="st-content"><div class="st-title">Fundação da Word Metal</div><div class="st-desc">Início das operações no Norte do Paraná com foco em funilaria industrial e manutenção de caldeiras.</div></div></div>
+          <div class="st-item"><div class="st-year">2017</div><div class="st-line"><div class="st-dot"></div></div><div class="st-content"><div class="st-title">Especialização em NR-13</div><div class="st-desc">Certificação completa em caldeiras e vasos de pressão. Início das parcerias com agroindústrias da região.</div></div></div>
+          <div class="st-item"><div class="st-year">2019</div><div class="st-line"><div class="st-dot"></div></div><div class="st-content"><div class="st-title">Expansão de Serviços</div><div class="st-desc">Adição de montagem de equipamentos, instalação de tubulação e reformas industriais de grande porte.</div></div></div>
+          <div class="st-item"><div class="st-year">2022</div><div class="st-line"><div class="st-dot"></div></div><div class="st-content"><div class="st-title">Time de Alta Pressão</div><div class="st-desc">Formação de equipe especializada em serviços de alta complexidade — caldeiras de grande porte e sistemas de vapor industrial.</div></div></div>
+          <div class="st-item"><div class="st-year">2025</div><div class="st-line"><div class="st-dot"></div></div><div class="st-content"><div class="st-title">Word Metal 4.0</div><div class="st-desc">Integração do time de tecnologia. Lançamento de serviços IoT, manutenção preditiva, cibersegurança industrial e gêmeo digital.</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ EQUIPE ══ -->
+<div class="team-section">
+  <div style="max-width:1280px;margin:0 auto;">
+    <div class="sec-label">Quem faz acontecer</div>
+    <h2 class="sec-title reveal">NOSSO TIME</h2>
+  </div>
+  <div class="team-grid reveal">
+    <div class="tm-card"><div class="tm-avatar av-o">CM</div><div class="tm-name">Carlos Mendes</div><div class="tm-role">Caldeireiro Sênior</div></div>
+    <div class="tm-card"><div class="tm-avatar av-b">RS</div><div class="tm-name">Rodrigo Silva</div><div class="tm-role">Funileiro Industrial</div></div>
+    <div class="tm-card"><div class="tm-avatar av-y">AL</div><div class="tm-name">Anderson Lima</div><div class="tm-role">Técnico de Campo</div></div>
+    <div class="tm-card"><div class="tm-avatar av-g">FC</div><div class="tm-name">Felipe Costa</div><div class="tm-role">Engenheiro de Software</div></div>
+    <div class="tm-card"><div class="tm-avatar av-r">MR</div><div class="tm-name">Mariana Rocha</div><div class="tm-role">Analista de Sistemas</div></div>
+  </div>
+</div>
+
+<!-- ══ ORÇAMENTO ══ -->
+<section id="orcamento">
+  <div class="section">
+    <div class="sec-label">Fale conosco</div>
+    <h2 class="sec-title reveal">SOLICITE SEU<br>ORÇAMENTO</h2>
+    <div class="orc-grid">
+      <div class="orc-info reveal">
+        <p class="sec-sub">Atendemos indústrias em todo o Norte do Paraná e região. Resposta em até 4 horas em dias úteis.</p>
+        <div class="orc-contacts">
+          <div class="orc-contact"><div class="orc-contact-icon">📍</div><div><div class="orc-contact-label">Localização</div><div class="orc-contact-val">Norte do Paraná — PR</div></div></div>
+          <div class="orc-contact"><div class="orc-contact-icon">📱</div><div><div class="orc-contact-label">WhatsApp</div><div class="orc-contact-val">(43) 9 9934 9583</div></div></div>
+          <div class="orc-contact"><div class="orc-contact-icon">📧</div><div><div class="orc-contact-label">E-mail</div><div class="orc-contact-val">wormetal01@gmail.com</div></div></div>
+          <div class="orc-contact"><div class="orc-contact-icon">⏰</div><div><div class="orc-contact-label">Horário</div><div class="orc-contact-val">Seg–Sex: 7h às 18h</div></div></div>
+        </div>
+        <div style="margin-top:28px;padding:20px;background:var(--grafite);border:1px solid var(--borda);">
+          <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--laranja);margin-bottom:10px;">REGIÕES ATENDIDAS</div>
+          <div style="font-size:13px;font-weight:300;color:var(--prata);line-height:1.8;">Londrina · Maringá · Arapongas · Cambé · Rolândia · Apucarana · Porecatu · Bandeirantes · Jacarezinho · Paranavaí e região</div>
+        </div>
+      </div>
+      <div class="orc-form reveal">
+        <div class="form-title">SOLICITAR ORÇAMENTO</div>
+        <div id="form-fields">
+          <div class="fr2">
+            <div class="fg"><label class="fl">Nome completo</label><input class="fi" id="f-nome" placeholder="Seu nome"></div>
+            <div class="fg"><label class="fl">Empresa</label><input class="fi" id="f-empresa" placeholder="Nome da empresa"></div>
+          </div>
+          <div class="fr2">
+            <div class="fg"><label class="fl">Telefone / WhatsApp</label><input class="fi" id="f-tel" placeholder="(43) 9 9934 9583"></div>
+            <div class="fg"><label class="fl">Cidade</label><input class="fi" id="f-cidade" placeholder="Londrina, PR"></div>
+          </div>
+          <div class="fg"><label class="fl">Serviço de interesse</label>
+            <select class="fs" id="f-servico">
+              <option value="">Selecione o serviço</option>
+              <option>Manutenção / Inspeção de Caldeira</option>
+              <option>Laudo NR-13</option>
+              <option>Instalação de Tubulação</option>
+              <option>Funilaria Industrial</option>
+              <option>Retrofit com Automação</option>
+              <option>Manutenção Preditiva IoT</option>
+              <option>Cibersegurança Industrial</option>
+              <option>Gêmeo Digital / BIM</option>
+              <option>Reforma Industrial</option>
+              <option>Manutenção como Serviço (MaaS)</option>
+              <option>Outro / Não sei ainda</option>
+            </select>
+          </div>
+          <div class="fg"><label class="fl">Descreva sua necessidade</label><textarea class="ft" id="f-msg" placeholder="Descreva o equipamento, o serviço necessário, urgência e qualquer informação relevante..."></textarea></div>
+          <button class="submit-btn" onclick="enviarForm()">ENVIAR SOLICITAÇÃO →</button>
+        </div>
+        <div class="form-success" id="form-success">
+          <div class="form-success-icon">✅</div>
+          <div class="form-success-title">SOLICITAÇÃO RECEBIDA!</div>
+          <p class="form-success-text">Obrigado! Nossa equipe entrará em contato em até 4 horas úteis. Você também pode nos contatar diretamente pelo WhatsApp para atendimento imediato.</p>
+          <br>
+          <a href="https://wa.me/5543999999999" target="_blank" class="btn-primary" style="display:inline-flex;margin:0 auto;">Falar no WhatsApp →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-logo">WORD<span>METAL</span></div>
+        <p class="footer-brand-text">Metalúrgica especializada em caldeiras, alta pressão e instalações industriais. Tecnologia 4.0 integrada ao serviço técnico. Norte do Paraná.</p>
+        <div style="font-family:'Space Mono',monospace;font-size:9px;color:rgba(255,85,0,.5);letter-spacing:2px;">FORÇA INDUSTRIAL. INTELIGÊNCIA DIGITAL.</div>
+      </div>
+      <div>
+        <div class="footer-col-title">Serviços</div>
+        <div class="footer-links">
+          <a href="#servicos">Caldeiras & Alta Pressão</a>
+          <a href="#servicos">Funilaria & Tubulação</a>
+          <a href="#servicos">Manutenção Preditiva</a>
+          <a href="#servicos">Retrofit & Automação</a>
+          <a href="#servicos">Cibersegurança OT</a>
+          <a href="#servicos">Gêmeo Digital BIM</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Empresa</div>
+        <div class="footer-links">
+          <a href="#sobre">Nossa História</a>
+          <a href="#sobre">Nosso Time</a>
+          <a href="#portfolio">Portfólio</a>
+          <a href="#orcamento">Contato</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Contato</div>
+        <div class="footer-links">
+          <a href="#">(43) 9 9934 9583</a>
+          <a href="#">wormetal01@gmail.com</a>
+          <a href="#">Norte do Paraná — PR</a>
+          <a href="#">Seg–Sex: 7h às 18h</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 WORD METAL — TODOS OS DIREITOS RESERVADOS</div>
+      <div class="footer-nr">NR-13 · NR-12 · INDÚSTRIA 4.0</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// NAV scroll
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// Reveal on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Form submit
+function enviarForm() {
+  const nome = document.getElementById('f-nome').value.trim();
+  const empresa = document.getElementById('f-empresa').value.trim();
+  const tel = document.getElementById('f-tel').value.trim();
+  const servico = document.getElementById('f-servico').value;
+  if (!nome || !tel || !servico) {
+    alert('Por favor preencha nome, telefone e serviço de interesse.');
+    return;
+  }
+  document.getElementById('form-fields').style.display = 'none';
+  document.getElementById('form-success').style.display = 'block';
+}
+</script>
+</body>
+</html>
