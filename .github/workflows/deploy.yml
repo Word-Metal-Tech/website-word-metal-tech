@@ -18,4 +18,4 @@ jobs:
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
         local-dir: ./wordmetaltech.com.br/
-        server-dir: ~/
+        server-dir: ~/dh_zqrjyp/
