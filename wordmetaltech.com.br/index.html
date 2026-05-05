@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Word Metal — Força Industrial. Inteligência Digital.</title>
-<meta name="description" content="Metalúrgica especializada em caldeiras, alta pressão, tubulação industrial e tecnologia 4.0. Norte do Paraná. 10 anos de experiência.">
-<meta name="keywords" content="metalúrgica Londrina, caldeira NR-13, manutenção industrial, tubulação industrial, Norte Paraná, manutenção preditiva">
+<meta name="description" content="Metalúrgica especializada em tubulação industrial, funilaria, solda e tecnologia 4.0 com Gêmeo Digital. Norte do Paraná. 10 anos de experiência.">
+<meta name="keywords" content="metalúrgica Londrina, gêmeo digital, manutenção industrial, tubulação industrial, Norte Paraná, manutenção preditiva, secador de grãos, extrusora ração animal, avicultura">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -29,7 +29,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .nav-logo span{color:var(--laranja);}
 .nav-links{display:flex;align-items:center;gap:32px;}
 .nav-links a{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;text-decoration:none;color:var(--prata);text-transform:uppercase;transition:color .2s;}
-.nav-links a:hover{color:var(--branco);}
+.nav-links a:hover,.nav-links a.active{color:var(--branco);}
 .nav-cta{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;padding:10px 22px;background:var(--laranja);color:#000;text-decoration:none;font-weight:700;text-transform:uppercase;transition:background .2s;}
 .nav-cta:hover{background:var(--laranja2);}
 .nav-mobile-btn{display:none;background:none;border:1px solid var(--borda2);color:var(--branco);padding:8px 12px;cursor:pointer;font-size:18px;}
@@ -38,6 +38,15 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .mobile-menu a{font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:4px;text-decoration:none;color:var(--branco);transition:color .2s;}
 .mobile-menu a:hover{color:var(--laranja);}
 .mobile-close{position:absolute;top:24px;right:24px;background:none;border:none;color:var(--prata);font-size:28px;cursor:pointer;}
+
+/* ══ TABS NAV ══ */
+.tabs-bar{position:sticky;top:60px;z-index:900;background:var(--grafite);border-bottom:1px solid var(--borda);overflow-x:auto;}
+.tabs-inner{max-width:1280px;margin:0 auto;display:flex;padding:0 40px;}
+.tab-btn{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:16px 24px;background:none;border:none;color:var(--prata);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;flex-shrink:0;}
+.tab-btn:hover{color:var(--branco);}
+.tab-btn.active{color:var(--laranja);border-bottom-color:var(--laranja);}
+.tab-content{display:none;}
+.tab-content.active{display:block;}
 
 /* ══ HERO ══ */
 #hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden;padding-top:80px;}
@@ -67,7 +76,6 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 
 .hero-right{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;overflow:hidden;}
 .hero-visual{position:relative;width:420px;height:420px;}
-/* Animated industrial diagram */
 .hv-ring{position:absolute;border-radius:50%;border:1px solid rgba(255,85,0,.2);animation:spin linear infinite;}
 .hv-ring1{inset:0;animation-duration:30s;}
 .hv-ring2{inset:40px;border-color:rgba(255,85,0,.12);animation-duration:20s;animation-direction:reverse;}
@@ -80,12 +88,13 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .hv-wm span{color:var(--laranja);}
 .hv-sep{width:40px;height:1px;background:var(--laranja);}
 .hv-since{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:3px;color:var(--prata);}
-/* Floating chips */
 .hv-chip{position:absolute;background:var(--aco);border:1px solid var(--borda2);padding:8px 14px;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:1px;color:var(--laranja);white-space:nowrap;animation:float ease-in-out infinite;}
 .hv-chip1{top:30px;right:10px;animation-duration:3.2s;animation-delay:0s;}
 .hv-chip2{bottom:60px;left:0;animation-duration:4s;animation-delay:.8s;}
 .hv-chip3{top:50%;left:-20px;transform:translateY(-50%);animation-duration:3.6s;animation-delay:.4s;}
 @keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+@keyframes float2{0%,100%{transform:translateY(-50%);}50%{transform:translateY(calc(-50% - 8px));}}
+.hv-chip3{animation-name:float2;}
 @keyframes spin{to{transform:rotate(360deg);}}
 
 /* ══ TICKER ══ */
@@ -123,6 +132,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .srv-card.featured{border-bottom-color:var(--laranja);background:#1A1A1C;}
 .srv-badge{display:inline-block;font-family:'Space Mono',monospace;font-size:8px;letter-spacing:2px;padding:3px 8px;border:1px solid rgba(255,85,0,.3);color:var(--laranja);text-transform:uppercase;margin-bottom:16px;}
 .srv-badge.novo{background:rgba(255,85,0,.1);}
+.srv-badge.destaque{background:rgba(43,142,255,.12);border-color:rgba(43,142,255,.4);color:var(--azul);}
 .srv-icon{font-size:32px;margin-bottom:16px;display:block;}
 .srv-name{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:2px;margin-bottom:10px;}
 .srv-desc{font-size:14px;font-weight:300;color:var(--prata);line-height:1.7;margin-bottom:20px;}
@@ -131,9 +141,43 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .srv-arrow{position:absolute;bottom:20px;right:24px;font-size:20px;color:var(--borda2);transition:all .3s;}
 .srv-card:hover .srv-arrow{color:var(--laranja);transform:translateX(4px);}
 
+/* ══ GÊMEO DIGITAL — DESTAQUE ══ */
+#gemeo{background:var(--preto);border-top:1px solid var(--borda);}
+.gemeo-hero{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;margin-bottom:80px;}
+.gemeo-visual{position:relative;height:380px;background:var(--grafite);border:1px solid var(--borda2);overflow:hidden;}
+.gemeo-visual::before{content:'DIGITAL TWIN';font-family:'Bebas Neue',sans-serif;font-size:100px;color:rgba(43,142,255,.04);position:absolute;inset:0;display:flex;align-items:center;justify-content:center;letter-spacing:-3px;pointer-events:none;line-height:1;}
+.gv-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(43,142,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(43,142,255,.05) 1px,transparent 1px);background-size:32px 32px;}
+.gv-core{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
+.gv-node{position:absolute;width:10px;height:10px;background:var(--azul);border-radius:50%;box-shadow:0 0 12px rgba(43,142,255,.6);}
+.gv-label{position:absolute;font-family:'Space Mono',monospace;font-size:8px;letter-spacing:1px;color:var(--azul);padding:4px 8px;border:1px solid rgba(43,142,255,.3);background:rgba(8,8,10,.8);white-space:nowrap;animation:float ease-in-out infinite;}
+.gv-center{width:100px;height:100px;border:1px solid rgba(43,142,255,.4);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;background:rgba(43,142,255,.05);}
+.gv-center-icon{font-size:32px;}
+.gv-center-txt{font-family:'Space Mono',monospace;font-size:7px;letter-spacing:2px;color:var(--azul);}
+.gv-line{position:absolute;background:rgba(43,142,255,.2);transform-origin:left center;}
+.gemeo-features{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:48px;}
+.gemeo-feat{padding:24px;background:var(--grafite);border:1px solid var(--borda);border-left:3px solid var(--azul);transition:background .3s;}
+.gemeo-feat:hover{background:var(--aco);}
+.gemeo-feat-icon{font-size:24px;margin-bottom:12px;display:block;}
+.gemeo-feat-title{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;margin-bottom:6px;color:var(--branco);}
+.gemeo-feat-text{font-size:13px;font-weight:300;color:var(--prata);line-height:1.6;}
+
+/* Setores do Gêmeo Digital */
+.gemeo-setores{margin-top:80px;}
+.setores-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--borda);margin-top:48px;}
+.setor-card{background:var(--aco);padding:40px 32px;position:relative;overflow:hidden;transition:all .3s;border-bottom:3px solid transparent;}
+.setor-card:hover{background:#1A1A1E;border-bottom-color:var(--azul);}
+.setor-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(43,142,255,.3),transparent);}
+.setor-num{font-family:'Bebas Neue',sans-serif;font-size:64px;color:rgba(43,142,255,.08);position:absolute;top:16px;right:24px;line-height:1;letter-spacing:-2px;}
+.setor-icon{font-size:36px;margin-bottom:20px;display:block;}
+.setor-badge{display:inline-block;font-family:'Space Mono',monospace;font-size:8px;letter-spacing:2px;padding:3px 8px;border:1px solid rgba(43,142,255,.3);color:var(--azul);background:rgba(43,142,255,.08);text-transform:uppercase;margin-bottom:16px;}
+.setor-name{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:2px;margin-bottom:10px;}
+.setor-desc{font-size:14px;font-weight:300;color:var(--prata);line-height:1.7;margin-bottom:20px;}
+.setor-tags{display:flex;flex-wrap:wrap;gap:6px;}
+.setor-tag{font-family:'Space Mono',monospace;font-size:9px;padding:3px 8px;background:var(--grafite);border:1px solid rgba(43,142,255,.2);color:rgba(43,142,255,.7);}
+
 /* ══ 4.0 BANNER ══ */
 #banner40{background:var(--laranja);padding:80px 40px;position:relative;overflow:hidden;}
-#banner40::before{content:'4.0';font-family:'Bebas Neue',sans-serif;font-size:300px;color:rgba(0,0,0,.08);position:absolute;right:-20px;top:50%;transform:translateY(-50%);line-height:1;pointer-events:none;letter-spacing:-10px;}
+#banner40::before{content:'5.0';font-family:'Bebas Neue',sans-serif;font-size:300px;color:rgba(0,0,0,.08);position:absolute;right:-20px;top:50%;transform:translateY(-50%);line-height:1;pointer-events:none;letter-spacing:-10px;}
 .banner40-inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
 .banner40-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,5vw,72px);color:#000;line-height:1;letter-spacing:2px;margin-bottom:16px;}
 .banner40-sub{font-size:17px;font-weight:500;color:rgba(0,0,0,.7);line-height:1.6;}
@@ -150,7 +194,6 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .port-card:hover .port-overlay{opacity:1;}
 .port-card:hover .port-visual{transform:scale(1.04);}
 .port-visual{width:100%;height:100%;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;transition:transform .4s;position:relative;}
-/* Industrial SVG illustrations */
 .port-visual svg{width:80px;height:80px;opacity:.3;transition:opacity .3s;}
 .port-card:hover .port-visual svg{opacity:.5;}
 .port-bg-text{font-family:'Bebas Neue',sans-serif;font-size:90px;color:rgba(255,255,255,.03);position:absolute;inset:0;display:flex;align-items:center;justify-content:center;letter-spacing:-2px;pointer-events:none;}
@@ -165,7 +208,6 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 /* ══ SOBRE ══ */
 #sobre{background:var(--preto);}
 .sobre-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;margin-top:60px;}
-.sobre-left{}
 .sobre-text{font-size:17px;font-weight:300;color:var(--branco2);line-height:1.8;margin-bottom:20px;}
 .sobre-text strong{color:var(--branco);font-weight:600;}
 .sobre-values{display:flex;flex-direction:column;gap:12px;margin-top:32px;}
@@ -173,7 +215,6 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .sobre-val-icon{font-size:20px;flex-shrink:0;margin-top:2px;}
 .sobre-val-title{font-size:14px;font-weight:600;margin-bottom:3px;}
 .sobre-val-text{font-size:13px;font-weight:300;color:var(--prata);line-height:1.5;}
-.sobre-right{}
 .sobre-timeline{display:flex;flex-direction:column;gap:0;}
 .st-item{display:grid;grid-template-columns:80px 1px 1fr;gap:0 24px;padding-bottom:32px;}
 .st-item:last-child{padding-bottom:0;}
@@ -185,24 +226,9 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .st-title{font-size:15px;font-weight:600;margin-bottom:4px;}
 .st-desc{font-size:13px;font-weight:300;color:var(--prata);line-height:1.5;}
 
-/* ══ EQUIPE ══ */
-.team-section{background:var(--grafite);border-top:1px solid var(--borda);padding:100px 40px;}
-.team-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--borda);max-width:1280px;margin:60px auto 0;}
-.tm-card{background:var(--aco);padding:28px 20px;text-align:center;transition:background .3s;}
-.tm-card:hover{background:#1E1E1E;}
-.tm-avatar{width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:22px;margin:0 auto 14px;}
-.tm-name{font-size:14px;font-weight:600;margin-bottom:4px;}
-.tm-role{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:1px;color:var(--prata);text-transform:uppercase;line-height:1.4;}
-.av-o{background:rgba(255,85,0,.15);color:var(--laranja);border:1px solid rgba(255,85,0,.25);}
-.av-b{background:rgba(43,142,255,.15);color:var(--azul);border:1px solid rgba(43,142,255,.25);}
-.av-g{background:rgba(0,196,122,.15);color:var(--verde);border:1px solid rgba(0,196,122,.25);}
-.av-y{background:rgba(255,184,0,.15);color:var(--amarelo);border:1px solid rgba(255,184,0,.25);}
-.av-r{background:rgba(255,59,59,.15);color:var(--vermelho);border:1px solid rgba(255,59,59,.25);}
-
 /* ══ ORÇAMENTO ══ */
 #orcamento{background:var(--preto);border-top:1px solid var(--borda);}
 .orc-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:start;margin-top:60px;}
-.orc-info{}
 .orc-contacts{display:flex;flex-direction:column;gap:12px;margin-top:32px;}
 .orc-contact{display:flex;align-items:center;gap:14px;padding:14px 18px;background:var(--grafite);border:1px solid var(--borda);}
 .orc-contact-icon{font-size:18px;}
@@ -259,21 +285,23 @@ footer{background:var(--grafite);border-top:1px solid var(--borda);padding:60px 
   .nav-links,.nav-cta{display:none;}
   .nav-mobile-btn{display:block;}
   .section{padding:64px 24px;}
-  .dif-grid,.srv-grid{grid-template-columns:1fr;}
-  .banner40-inner,.sobre-grid,.orc-grid,.srv-intro{grid-template-columns:1fr;gap:40px;}
+  .dif-grid,.srv-grid,.setores-grid{grid-template-columns:1fr;}
+  .banner40-inner,.sobre-grid,.orc-grid,.srv-intro,.gemeo-hero{grid-template-columns:1fr;gap:40px;}
   .port-grid{grid-template-columns:1fr 1fr;}
-  .team-grid{grid-template-columns:repeat(2,1fr);}
   .footer-top{grid-template-columns:1fr 1fr;gap:32px;}
   .fr2{grid-template-columns:1fr;}
   .hero-stats{flex-direction:column;gap:20px;}
   .hstat,.hstat:last-child,.hstat:not(:first-child):not(:last-child){border:none;padding:0;}
+  .gemeo-features{grid-template-columns:1fr;}
+  .tabs-inner{padding:0 16px;}
+  .tab-btn{padding:14px 16px;font-size:9px;}
 }
 </style>
 </head>
 <body>
 
 <!-- WHATSAPP -->
-<a href="https://wa.me/5543999349583?text=Olá!%20Vim%20pelo%20site%20da%20Word%20Metal%20e%20gostaria%20de%20um%20orçamento." class="wa-btn" target="_blank" title="Fale conosco no WhatsApp">
+<a href="https://wa.me/5543999999999?text=Olá!%20Vim%20pelo%20site%20da%20Word%20Metal%20e%20gostaria%20de%20um%20orçamento." class="wa-btn" target="_blank" title="Fale conosco no WhatsApp">
   <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
@@ -282,12 +310,14 @@ footer{background:var(--grafite);border-top:1px solid var(--borda);padding:60px 
   <div class="nav-inner">
     <a href="#hero" class="nav-logo">WORD<span>METAL</span></a>
     <div class="nav-links">
-      <a href="#servicos">Serviços</a>
-      <a href="#portfolio">Portfólio</a>
-      <a href="#sobre">Sobre</a>
-      <a href="#orcamento">Contato</a>
+      <a href="#" onclick="showTab('home');return false;">Home</a>
+      <a href="#" onclick="showTab('servicos');return false;">Serviços</a>
+      <a href="#" onclick="showTab('gemeo');return false;">Gêmeo Digital</a>
+      <a href="#" onclick="showTab('portfolio');return false;">Portfólio</a>
+      <a href="#" onclick="showTab('sobre');return false;">Sobre</a>
+      <a href="#" onclick="showTab('contato');return false;">Contato</a>
     </div>
-    <a href="#orcamento" class="nav-cta">Solicitar Orçamento →</a>
+    <a href="#" onclick="showTab('contato');return false;" class="nav-cta">Solicitar Orçamento →</a>
     <button class="nav-mobile-btn" onclick="document.getElementById('mobile-menu').classList.add('open')">☰</button>
   </div>
 </nav>
@@ -295,11 +325,30 @@ footer{background:var(--grafite);border-top:1px solid var(--borda);padding:60px 
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobile-menu">
   <button class="mobile-close" onclick="document.getElementById('mobile-menu').classList.remove('open')">✕</button>
-  <a href="#servicos" onclick="document.getElementById('mobile-menu').classList.remove('open')">Serviços</a>
-  <a href="#portfolio" onclick="document.getElementById('mobile-menu').classList.remove('open')">Portfólio</a>
-  <a href="#sobre" onclick="document.getElementById('mobile-menu').classList.remove('open')">Sobre</a>
-  <a href="#orcamento" onclick="document.getElementById('mobile-menu').classList.remove('open')">Orçamento</a>
+  <a href="#" onclick="showTab('home');document.getElementById('mobile-menu').classList.remove('open');return false;">Home</a>
+  <a href="#" onclick="showTab('servicos');document.getElementById('mobile-menu').classList.remove('open');return false;">Serviços</a>
+  <a href="#" onclick="showTab('gemeo');document.getElementById('mobile-menu').classList.remove('open');return false;">Gêmeo Digital</a>
+  <a href="#" onclick="showTab('portfolio');document.getElementById('mobile-menu').classList.remove('open');return false;">Portfólio</a>
+  <a href="#" onclick="showTab('sobre');document.getElementById('mobile-menu').classList.remove('open');return false;">Sobre</a>
+  <a href="#" onclick="showTab('contato');document.getElementById('mobile-menu').classList.remove('open');return false;">Contato</a>
 </div>
+
+<!-- TABS BAR -->
+<div class="tabs-bar" id="tabs-bar" style="display:none;">
+  <div class="tabs-inner">
+    <button class="tab-btn active" onclick="showTab('home')">Home</button>
+    <button class="tab-btn" onclick="showTab('servicos')">Serviços</button>
+    <button class="tab-btn" onclick="showTab('gemeo')">Gêmeo Digital</button>
+    <button class="tab-btn" onclick="showTab('portfolio')">Portfólio</button>
+    <button class="tab-btn" onclick="showTab('sobre')">Sobre</button>
+    <button class="tab-btn" onclick="showTab('contato')">Contato</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB: HOME
+══════════════════════════════════════ -->
+<div class="tab-content active" id="tab-home">
 
 <!-- ══ HERO ══ -->
 <section id="hero">
@@ -313,15 +362,15 @@ footer{background:var(--grafite);border-top:1px solid var(--borda);padding:60px 
       <span class="line2">INDUSTRIAL.</span><br>
       <span class="line3">INTELIGÊNCIA DIGITAL.</span>
     </h1>
-    <p class="hero-desc">Metalúrgica especializada em caldeiras, alta pressão e instalações industriais — agora com tecnologia IoT, manutenção preditiva e cibersegurança industrial integradas.</p>
+    <p class="hero-desc">Metalúrgica especializada em tubulação industrial, funilaria e manutenção — agora com Gêmeo Digital, IoT e manutenção preditiva integradas para o agronegócio e a indústria do Norte do Paraná.</p>
     <div class="hero-actions">
-      <a href="#orcamento" class="btn-primary">Solicitar Orçamento →</a>
-      <a href="#servicos" class="btn-ghost">Ver Serviços</a>
+      <a href="#" onclick="showTab('contato');return false;" class="btn-primary">Solicitar Orçamento →</a>
+      <a href="#" onclick="showTab('servicos');return false;" class="btn-ghost">Ver Serviços</a>
     </div>
     <div class="hero-stats">
       <div class="hstat"><div class="hstat-num">10+</div><div class="hstat-lbl">Anos de<br>experiência</div></div>
       <div class="hstat"><div class="hstat-num">200+</div><div class="hstat-lbl">Projetos<br>entregues</div></div>
-      <div class="hstat"><div class="hstat-num">6</div><div class="hstat-lbl">Novos serviços<br>4.0</div></div>
+      <div class="hstat"><div class="hstat-num">12</div><div class="hstat-lbl">Serviços<br>disponíveis</div></div>
     </div>
   </div>
   <div class="hero-right">
@@ -334,8 +383,8 @@ footer{background:var(--grafite);border-top:1px solid var(--borda);padding:60px 
         <div class="hv-sep"></div>
         <div class="hv-since">SINCE 2015</div>
       </div>
-      <div class="hv-chip hv-chip1">⚙ NR-13</div>
-      <div class="hv-chip hv-chip2">🔥 CALDEIRAS</div>
+      <div class="hv-chip hv-chip1">🏗️ GÊMEO DIGITAL</div>
+      <div class="hv-chip hv-chip2">🌾 AGRONEGÓCIO</div>
       <div class="hv-chip hv-chip3">📡 IoT</div>
     </div>
   </div>
@@ -344,20 +393,23 @@ footer{background:var(--grafite);border-top:1px solid var(--borda);padding:60px 
 <!-- TICKER -->
 <div class="ticker">
   <div class="ticker-inner">
-    <span class="ticker-item">CALDEIRAS & ALTA PRESSÃO</span><span class="ticker-sep">◆</span>
-    <span class="ticker-item">NR-13 CERTIFICADO</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">GÊMEO DIGITAL INDUSTRIAL</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">SECADOR DE GRÃOS</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">EXTRUSORAS DE RAÇÃO ANIMAL</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">AVICULTURA INDUSTRIAL</span><span class="ticker-sep">◆</span>
     <span class="ticker-item">MANUTENÇÃO PREDITIVA IoT</span><span class="ticker-sep">◆</span>
     <span class="ticker-item">FUNILARIA INDUSTRIAL</span><span class="ticker-sep">◆</span>
-    <span class="ticker-item">GÊMEO DIGITAL BIM</span><span class="ticker-sep">◆</span>
-    <span class="ticker-item">CIBERSEGURANÇA INDUSTRIAL</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">SOLDA MIG/TIG/ELETRODO</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">RETROFIT & AUTOMAÇÃO</span><span class="ticker-sep">◆</span>
     <span class="ticker-item">NORTE DO PARANÁ</span><span class="ticker-sep">◆</span>
-    <!-- repeat for seamless -->
-    <span class="ticker-item">CALDEIRAS & ALTA PRESSÃO</span><span class="ticker-sep">◆</span>
-    <span class="ticker-item">NR-13 CERTIFICADO</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">GÊMEO DIGITAL INDUSTRIAL</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">SECADOR DE GRÃOS</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">EXTRUSORAS DE RAÇÃO ANIMAL</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">AVICULTURA INDUSTRIAL</span><span class="ticker-sep">◆</span>
     <span class="ticker-item">MANUTENÇÃO PREDITIVA IoT</span><span class="ticker-sep">◆</span>
     <span class="ticker-item">FUNILARIA INDUSTRIAL</span><span class="ticker-sep">◆</span>
-    <span class="ticker-item">GÊMEO DIGITAL BIM</span><span class="ticker-sep">◆</span>
-    <span class="ticker-item">CIBERSEGURANÇA INDUSTRIAL</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">SOLDA MIG/TIG/ELETRODO</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">RETROFIT & AUTOMAÇÃO</span><span class="ticker-sep">◆</span>
     <span class="ticker-item">NORTE DO PARANÁ</span><span class="ticker-sep">◆</span>
   </div>
 </div>
@@ -371,24 +423,94 @@ footer{background:var(--grafite);border-top:1px solid var(--borda);padding:60px 
       <div class="dif-card">
         <span class="dif-icon">🔩</span>
         <div class="dif-title">EXPERTISE TÉCNICA REAL</div>
-        <p class="dif-text">10 anos trabalhando com caldeiras, alta pressão e instalações industriais no Norte do Paraná. Conhecimento que só se adquire na prática — não em apostila.</p>
+        <p class="dif-text">10 anos trabalhando com metalurgia industrial, tubulação e instalações de alta complexidade no Norte do Paraná. Conhecimento que só se adquire na prática.</p>
+      </div>
+      <div class="dif-card">
+        <span class="dif-icon">🏗️</span>
+        <div class="dif-title">PIONEIROS EM GÊMEO DIGITAL</div>
+        <p class="dif-text">Únicos no Norte do Paraná a oferecer digitalização 3D completa de plantas industriais — com foco em secadores de grãos, extrusoras e instalações de avicultura.</p>
       </div>
       <div class="dif-card">
         <span class="dif-icon">💻</span>
         <div class="dif-title">TIME DE TECNOLOGIA INTERNO</div>
         <p class="dif-text">Engenheiro de software, analista de sistemas, cientista de dados e especialista em cibersegurança integrados à operação técnica. Único na região.</p>
       </div>
-      <div class="dif-card">
-        <span class="dif-icon">🛡️</span>
-        <div class="dif-title">SEGURANÇA & CONFORMIDADE</div>
-        <p class="dif-text">Serviços alinhados às normas NR-13, NR-12 e regulamentações de segurança industrial. Documentação completa e rastreável para cada projeto.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══ GÊMEO DIGITAL PREVIEW ══ -->
+<div style="background:linear-gradient(180deg,var(--preto) 0%,#0A0D14 100%);border-top:1px solid var(--borda);padding:80px 40px;">
+  <div style="max-width:1280px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;" class="reveal">
+      <div>
+        <div class="sec-label">Nossa principal inovação</div>
+        <h2 class="sec-title">GÊMEO DIGITAL<br><span style="color:var(--azul)">INDUSTRIAL</span></h2>
+        <p class="sec-sub" style="margin-bottom:32px;">Digitalizamos sua planta industrial em 3D — equipamentos, tubulações e processos. Uma réplica virtual que facilita reformas, expansões, auditorias e manutenção preditiva em tempo real.</p>
+        <div style="display:flex;gap:24px;flex-wrap:wrap;margin-bottom:32px;">
+          <div style="display:flex;align-items:center;gap:8px;"><span style="width:8px;height:8px;background:var(--azul);border-radius:50%;display:inline-block;box-shadow:0 0 8px rgba(43,142,255,.6);"></span><span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--prata);">Secadores de Grãos</span></div>
+          <div style="display:flex;align-items:center;gap:8px;"><span style="width:8px;height:8px;background:var(--azul);border-radius:50%;display:inline-block;box-shadow:0 0 8px rgba(43,142,255,.6);"></span><span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--prata);">Extrusoras de Ração</span></div>
+          <div style="display:flex;align-items:center;gap:8px;"><span style="width:8px;height:8px;background:var(--azul);border-radius:50%;display:inline-block;box-shadow:0 0 8px rgba(43,142,255,.6);"></span><span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--prata);">Avicultura Industrial</span></div>
+          <div style="display:flex;align-items:center;gap:8px;"><span style="width:8px;height:8px;background:var(--azul);border-radius:50%;display:inline-block;box-shadow:0 0 8px rgba(43,142,255,.6);"></span><span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--prata);">Plantas Industriais</span></div>
+        </div>
+        <button onclick="showTab('gemeo')" class="btn-primary">Explorar Gêmeo Digital →</button>
+      </div>
+      <div style="position:relative;height:320px;background:var(--grafite);border:1px solid var(--borda2);overflow:hidden;">
+        <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(43,142,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(43,142,255,.05) 1px,transparent 1px);background-size:32px 32px;"></div>
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;">
+          <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="20" y="50" width="80" height="50" rx="2" stroke="#2B8EFF" stroke-width="1.5" fill="rgba(43,142,255,0.05)"/>
+            <path d="M20 50 L60 25 L100 50" stroke="#2B8EFF" stroke-width="1.5"/>
+            <line x1="60" y1="25" x2="60" y2="100" stroke="#2B8EFF" stroke-width="1" opacity=".3" stroke-dasharray="4 4"/>
+            <line x1="20" y1="50" x2="100" y2="50" stroke="#2B8EFF" stroke-width="1" opacity=".3" stroke-dasharray="4 4"/>
+            <circle cx="60" cy="25" r="4" fill="#2B8EFF" opacity=".8"/>
+            <circle cx="20" cy="50" r="3" fill="#2B8EFF" opacity=".6"/>
+            <circle cx="100" cy="50" r="3" fill="#2B8EFF" opacity=".6"/>
+            <circle cx="20" cy="100" r="3" fill="#2B8EFF" opacity=".4"/>
+            <circle cx="100" cy="100" r="3" fill="#2B8EFF" opacity=".4"/>
+            <path d="M35 65 L55 65 L55 90 L35 90 Z" stroke="#2B8EFF" stroke-width="1" opacity=".4" fill="rgba(43,142,255,0.05)"/>
+          </svg>
+          <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;color:rgba(43,142,255,.6);">DIGITAL TWIN · BIM · 3D</div>
+        </div>
+        <div style="position:absolute;top:16px;left:16px;font-family:'Space Mono',monospace;font-size:8px;color:rgba(43,142,255,.4);letter-spacing:1px;">MODELO ATIVO ●</div>
+        <div style="position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(43,142,255,.4),transparent);animation:scan 3s linear infinite;"></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ══ SERVIÇOS ══ -->
-<section id="servicos">
+<!-- ══ BANNER 4.0 ══ -->
+<div id="banner40">
+  <div class="banner40-inner">
+    <div>
+      <div class="banner40-title">A METALÚRGICA<br>QUE PENSA<br>DIFERENTE.</div>
+      <p class="banner40-sub">Somos a única empresa do Norte do Paraná que une expertise técnica industrial com um time completo de tecnologia — entregando resultados que nenhum concorrente consegue.</p>
+    </div>
+    <div class="banner40-items">
+      <div class="banner40-item">
+        <div class="banner40-item-icon">🏗️</div>
+        <div><div class="banner40-item-text">Gêmeo Digital para Agronegócio</div><div class="banner40-item-sub">Digitalização 3D de secadores, extrusoras e galpões de avicultura</div></div>
+      </div>
+      <div class="banner40-item">
+        <div class="banner40-item-icon">📊</div>
+        <div><div class="banner40-item-text">Manutenção como Serviço (MaaS)</div><div class="banner40-item-sub">Contrato anual com monitoramento contínuo, relatórios mensais e SLA garantido</div></div>
+      </div>
+      <div class="banner40-item">
+        <div class="banner40-item-icon">🌐</div>
+        <div><div class="banner40-item-text">Plataforma de Gestão de Ativos</div><div class="banner40-item-sub">Seus equipamentos monitorados e documentados em plataforma exclusiva Word Metal</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+<!-- /tab-home -->
+
+<!-- ══════════════════════════════════════
+     TAB: SERVIÇOS
+══════════════════════════════════════ -->
+<div class="tab-content" id="tab-servicos">
+<section id="servicos" style="padding-top:40px;">
   <div class="section">
     <div class="srv-intro">
       <div>
@@ -396,26 +518,26 @@ footer{background:var(--grafite);border-top:1px solid var(--borda);padding:60px 
         <h2 class="sec-title reveal">SERVIÇOS<br>WORD METAL</h2>
       </div>
       <div>
-        <p class="sec-sub reveal">Da manutenção tradicional à tecnologia de ponta — uma carteira completa de serviços para indústrias do Norte do Paraná e região.</p>
+        <p class="sec-sub reveal">Da manutenção tradicional à tecnologia de ponta — uma carteira completa de serviços para indústrias do Norte do Paraná e agronegócio.</p>
       </div>
     </div>
     <div class="srv-grid reveal">
 
-      <div style="display:none" class="srv-card featured">
+      <div class="srv-card featured">
         <span class="srv-badge">CORE</span>
-        <span class="srv-icon">🔥</span>
-        <div class="srv-name">Caldeiras & Alta Pressão</div>
-        <p class="srv-desc">Manutenção, reforma, inspeção e adequação de caldeiras e vasos de pressão. Laudos NR-13 completos com documentação digital rastreável.</p>
-        <div class="srv-tags"><span class="srv-tag">NR-13</span><span class="srv-tag">Manutenção</span><span class="srv-tag">Inspeção</span><span class="srv-tag">Laudo</span></div>
+        <span class="srv-icon">🔧</span>
+        <div class="srv-name">Funilaria & Tubulação Industrial</div>
+        <p class="srv-desc">Fabricação, instalação e reforma de sistemas de tubulação industrial, estruturas metálicas e funilaria para ambientes industriais de alta exigência e agronegócio.</p>
+        <div class="srv-tags"><span class="srv-tag">Tubulação</span><span class="srv-tag">Funilaria</span><span class="srv-tag">Soldagem</span><span class="srv-tag">Estrutural</span></div>
         <div class="srv-arrow">→</div>
       </div>
 
       <div class="srv-card">
         <span class="srv-badge">CORE</span>
-        <span class="srv-icon">🔧</span>
-        <div class="srv-name">Funilaria & Tubulação Industrial</div>
-        <p class="srv-desc">Fabricação, instalação e reforma de sistemas de tubulação industrial, estruturas metálicas e funilaria para ambientes industriais de alta exigência.</p>
-        <div class="srv-tags"><span class="srv-tag">Tubulação</span><span class="srv-tag">Funilaria</span><span class="srv-tag">Soldagem</span></div>
+        <span class="srv-icon">🔨</span>
+        <div class="srv-name">Solda & Reforma de Equipamentos</div>
+        <p class="srv-desc">Soldagem estrutural e de precisão em aço carbono, inox e ligas especiais. Reforma completa de equipamentos industriais — prolongando a vida útil com qualidade e segurança certificadas.</p>
+        <div class="srv-tags"><span class="srv-tag">Solda MIG/TIG</span><span class="srv-tag">Reforma</span><span class="srv-tag">Estrutural</span><span class="srv-tag">Inox</span></div>
         <div class="srv-arrow">→</div>
       </div>
 
@@ -423,7 +545,7 @@ footer{background:var(--grafite);border-top:1px solid var(--borda);padding:60px 
         <span class="srv-badge novo">4.0 NOVO</span>
         <span class="srv-icon">📡</span>
         <div class="srv-name">Manutenção Preditiva IoT</div>
-        <p class="srv-desc">Sensores instalados nos seus equipamentos monitoram temperatura, pressão e vibração em tempo real. Alertas antes de falhas. Menos paradas, mais produção.</p>
+        <p class="srv-desc">Sensores instalados nos seus equipamentos monitoram temperatura, pressão e vibração em tempo real. Alertas antes de falhas. Menos paradas, mais produção no campo e na fábrica.</p>
         <div class="srv-tags"><span class="srv-tag">IoT</span><span class="srv-tag">Sensores</span><span class="srv-tag">Dashboard</span><span class="srv-tag">Preditiva</span></div>
         <div class="srv-arrow">→</div>
       </div>
@@ -446,60 +568,214 @@ footer{background:var(--grafite);border-top:1px solid var(--borda);padding:60px 
         <div class="srv-arrow">→</div>
       </div>
 
-      <div class="srv-card">
-        <span class="srv-badge novo">4.0 NOVO</span>
+      <div class="srv-card" style="border-bottom-color:var(--azul);background:#0E1018;">
+        <span class="srv-badge destaque">DESTAQUE</span>
         <span class="srv-icon">🏗️</span>
         <div class="srv-name">Gêmeo Digital & BIM Industrial</div>
-        <p class="srv-desc">Digitalização 3D completa da sua planta industrial — tubulações, caldeiras e equipamentos modelados digitalmente para facilitar reformas, auditorias e expansões.</p>
-        <div class="srv-tags"><span class="srv-tag">BIM</span><span class="srv-tag">3D</span><span class="srv-tag">Digital Twin</span></div>
+        <p class="srv-desc">Digitalização 3D completa da sua planta — tubulações, secadores de grãos, extrusoras e equipamentos modelados digitalmente para facilitar reformas, auditorias e expansões.</p>
+        <div class="srv-tags"><span class="srv-tag" style="border-color:rgba(43,142,255,.3);color:rgba(43,142,255,.8);">BIM</span><span class="srv-tag" style="border-color:rgba(43,142,255,.3);color:rgba(43,142,255,.8);">3D</span><span class="srv-tag" style="border-color:rgba(43,142,255,.3);color:rgba(43,142,255,.8);">Digital Twin</span></div>
+        <div class="srv-arrow" style="color:var(--azul);">→</div>
+      </div>
+
+      <div class="srv-card">
+        <span class="srv-badge">CORE</span>
+        <span class="srv-icon">🏭</span>
+        <div class="srv-name">Instalações Industriais Completas</div>
+        <p class="srv-desc">Montagem e instalação de estruturas industriais, plataformas, passarelas, suportes e infraestrutura metálica para galpões industriais e agroindustriais.</p>
+        <div class="srv-tags"><span class="srv-tag">Montagem</span><span class="srv-tag">Estruturas</span><span class="srv-tag">Plataformas</span><span class="srv-tag">Galpões</span></div>
+        <div class="srv-arrow">→</div>
+      </div>
+
+      <div class="srv-card">
+        <span class="srv-badge novo">4.0 NOVO</span>
+        <span class="srv-icon">📊</span>
+        <div class="srv-name">Manutenção como Serviço (MaaS)</div>
+        <p class="srv-desc">Contrato anual de manutenção com monitoramento IoT contínuo, relatórios mensais detalhados, SLA garantido e equipe técnica dedicada à sua planta industrial.</p>
+        <div class="srv-tags"><span class="srv-tag">Contrato</span><span class="srv-tag">SLA</span><span class="srv-tag">Monitoramento</span><span class="srv-tag">Relatórios</span></div>
         <div class="srv-arrow">→</div>
       </div>
 
     </div>
+
+    <div style="margin-top:48px;padding:32px;background:var(--grafite);border:1px solid var(--borda);border-left:3px solid var(--laranja);display:grid;grid-template-columns:1fr auto;align-items:center;gap:32px;" class="reveal">
+      <div>
+        <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--laranja);margin-bottom:10px;">ATENDIMENTO ESPECIALIZADO</div>
+        <p style="font-size:15px;font-weight:300;color:var(--prata);line-height:1.75;margin:0;">Atendemos indústrias, cooperativas e agroindústrias em todo o Norte do Paraná. Equipe técnica multidisciplinar com resposta em até 4 horas em dias úteis.</p>
+      </div>
+      <button onclick="showTab('contato')" class="btn-primary" style="white-space:nowrap;flex-shrink:0;border:none;cursor:pointer;">Solicitar proposta →</button>
+    </div>
   </div>
 </section>
-
-<!-- ══ BANNER 4.0 ══ -->
-<div id="banner40">
-  <div class="banner40-inner">
-    <div>
-      <div class="banner40-title">A METALÚRGICA<br>QUE PENSA<br>DIFERENTE.</div>
-      <p class="banner40-sub">Somos a única empresa do Norte do Paraná que une expertise técnica industrial com um time completo de tecnologia — entregando resultados que nenhum concorrente consegue.</p>
-    </div>
-    <div class="banner40-items">
-      <div class="banner40-item">
-        <div class="banner40-item-icon">📊</div>
-        <div><div class="banner40-item-text">Manutenção como Serviço (MaaS)</div><div class="banner40-item-sub">Contrato anual com monitoramento contínuo, relatórios mensais e SLA garantido</div></div>
-      </div>
-      <div class="banner40-item">
-        <div class="banner40-item-icon">📋</div>
-        <div><div class="banner40-item-text">Laudos Digitais Rastreáveis</div><div class="banner440-item-sub">QR Code em cada equipamento com histórico completo de NR-13 acessível em segundos</div></div>
-      </div>
-      <div class="banner40-item">
-        <div class="banner40-item-icon">🌐</div>
-        <div><div class="banner40-item-text">Plataforma de Gestão de Ativos</div><div class="banner40-item-sub">Seus equipamentos monitorados e documentados em uma plataforma desenvolvida pela Word Metal</div></div>
-      </div>
-    </div>
-  </div>
 </div>
+<!-- /tab-servicos -->
 
-<!-- ══ PORTFÓLIO ══ -->
-<div id="portfolio">
+<!-- ══════════════════════════════════════
+     TAB: GÊMEO DIGITAL
+══════════════════════════════════════ -->
+<div class="tab-content" id="tab-gemeo">
+<section id="gemeo" style="padding-top:40px;">
+  <div class="section">
+    <div class="gemeo-hero reveal">
+      <div>
+        <div class="sec-label">Nossa principal inovação</div>
+        <h2 class="sec-title">GÊMEO DIGITAL<br><span style="color:var(--azul)">INDUSTRIAL</span></h2>
+        <p class="sec-sub" style="margin-bottom:32px;">Criamos uma réplica virtual completa da sua planta industrial. Todos os equipamentos, tubulações, estruturas e fluxos de processo são modelados em 3D — permitindo manutenção preditiva, planejamento de reformas e auditorias sem paralisar a produção.</p>
+        <p style="font-size:15px;font-weight:300;color:var(--prata);line-height:1.75;margin-bottom:32px;">Somos os <strong style="color:var(--branco);">primeiros no Norte do Paraná</strong> a oferecer esta tecnologia com foco total no agronegócio e na indústria alimentícia local — conectando o mundo físico ao digital de forma prática e acessível.</p>
+        <button onclick="showTab('contato')" class="btn-primary" style="border:none;cursor:pointer;">Solicitar Digitalização →</button>
+      </div>
+      <div class="gemeo-visual">
+        <div class="gv-grid"></div>
+        <div class="gv-core">
+          <div style="position:relative;width:280px;height:280px;">
+            <!-- Central node -->
+            <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:80px;height:80px;border:1px solid rgba(43,142,255,.5);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;background:rgba(43,142,255,.08);">
+              <span style="font-size:28px;">🏗️</span>
+              <span style="font-family:'Space Mono',monospace;font-size:6px;color:var(--azul);letter-spacing:1px;">DIGITAL</span>
+            </div>
+            <!-- Orbiting labels -->
+            <div style="position:absolute;top:10px;left:50%;transform:translateX(-50%);font-family:'Space Mono',monospace;font-size:8px;color:rgba(43,142,255,.8);padding:4px 10px;border:1px solid rgba(43,142,255,.3);background:rgba(8,8,10,.9);white-space:nowrap;animation:float 3s ease-in-out infinite;">🌾 Secador de Grãos</div>
+            <div style="position:absolute;bottom:10px;left:50%;transform:translateX(-50%);font-family:'Space Mono',monospace;font-size:8px;color:rgba(43,142,255,.8);padding:4px 10px;border:1px solid rgba(43,142,255,.3);background:rgba(8,8,10,.9);white-space:nowrap;animation:float 4s ease-in-out infinite .5s;">🐔 Avicultura</div>
+            <div style="position:absolute;top:50%;left:5px;transform:translateY(-50%);font-family:'Space Mono',monospace;font-size:8px;color:rgba(43,142,255,.8);padding:4px 10px;border:1px solid rgba(43,142,255,.3);background:rgba(8,8,10,.9);white-space:nowrap;animation:float2 3.5s ease-in-out infinite .2s;">⚙️ Extrusoras</div>
+            <div style="position:absolute;top:50%;right:0;transform:translateY(-50%);font-family:'Space Mono',monospace;font-size:8px;color:rgba(43,142,255,.8);padding:4px 10px;border:1px solid rgba(43,142,255,.3);background:rgba(8,8,10,.9);white-space:nowrap;animation:float2 4.2s ease-in-out infinite .8s;">🏭 Planta Geral</div>
+            <!-- Connecting lines -->
+            <svg style="position:absolute;inset:0;width:100%;height:100%;" viewBox="0 0 280 280">
+              <line x1="140" y1="140" x2="140" y2="30" stroke="rgba(43,142,255,0.2)" stroke-width="1" stroke-dasharray="4 4"/>
+              <line x1="140" y1="140" x2="140" y2="250" stroke="rgba(43,142,255,0.2)" stroke-width="1" stroke-dasharray="4 4"/>
+              <line x1="140" y1="140" x2="40" y2="140" stroke="rgba(43,142,255,0.2)" stroke-width="1" stroke-dasharray="4 4"/>
+              <line x1="140" y1="140" x2="240" y2="140" stroke="rgba(43,142,255,0.2)" stroke-width="1" stroke-dasharray="4 4"/>
+            </svg>
+          </div>
+        </div>
+        <div style="position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(43,142,255,.5),transparent);animation:scan 2.5s linear infinite;"></div>
+        <div style="position:absolute;top:16px;left:16px;font-family:'Space Mono',monospace;font-size:8px;color:rgba(43,142,255,.5);letter-spacing:1px;">STATUS: ATIVO ●</div>
+      </div>
+    </div>
+
+    <!-- Features -->
+    <div class="gemeo-features reveal">
+      <div class="gemeo-feat">
+        <span class="gemeo-feat-icon">📐</span>
+        <div class="gemeo-feat-title">MODELAGEM 3D PRECISA</div>
+        <p class="gemeo-feat-text">Escaneamento a laser e fotogrametria para criar modelos 3D milimétricos de toda a sua instalação industrial.</p>
+      </div>
+      <div class="gemeo-feat">
+        <span class="gemeo-feat-icon">📡</span>
+        <div class="gemeo-feat-title">MONITORAMENTO EM TEMPO REAL</div>
+        <p class="gemeo-feat-text">Sensores IoT integrados ao modelo digital — temperatura, vibração e pressão exibidos sobre o gêmeo virtual da sua planta.</p>
+      </div>
+      <div class="gemeo-feat">
+        <span class="gemeo-feat-icon">🔮</span>
+        <div class="gemeo-feat-title">SIMULAÇÃO DE REFORMAS</div>
+        <p class="gemeo-feat-text">Teste expansões e reformas virtualmente antes de qualquer investimento físico. Reduza riscos e otimize custos de projeto.</p>
+      </div>
+      <div class="gemeo-feat">
+        <span class="gemeo-feat-icon">📋</span>
+        <div class="gemeo-feat-title">DOCUMENTAÇÃO DIGITAL COMPLETA</div>
+        <p class="gemeo-feat-text">Histórico de manutenções, especificações técnicas e laudos vinculados diretamente a cada componente no modelo 3D.</p>
+      </div>
+    </div>
+
+    <!-- Setores -->
+    <div class="gemeo-setores reveal">
+      <div class="sec-label">Setores atendidos</div>
+      <h2 class="sec-title">GÊMEO DIGITAL POR<br><span style="color:var(--azul)">SETOR</span></h2>
+      <div class="setores-grid">
+
+        <div class="setor-card">
+          <div class="setor-num">01</div>
+          <span class="setor-icon">🌾</span>
+          <span class="setor-badge">AGRONEGÓCIO</span>
+          <div class="setor-name">Secadores de Grãos</div>
+          <p class="setor-desc">Digitalização completa de secadores de milho, soja e trigo — câmaras, sistemas de ventilação, queimadores e transportadores modelados em 3D com monitoramento de temperatura, umidade e fluxo em tempo real.</p>
+          <div class="setor-tags">
+            <span class="setor-tag">Temperatura</span><span class="setor-tag">Umidade</span><span class="setor-tag">Fluxo</span><span class="setor-tag">Eficiência Energética</span>
+          </div>
+        </div>
+
+        <div class="setor-card">
+          <div class="setor-num">02</div>
+          <span class="setor-icon">⚙️</span>
+          <span class="setor-badge">NUTRIÇÃO ANIMAL</span>
+          <div class="setor-name">Extrusoras de Ração Animal</div>
+          <p class="setor-desc">Mapeamento digital completo de linhas de extrusão — extrusoras, condicionadores, pré-condicionadores, sistemas de lubrificação e painéis de controle. Histórico de manutenção vinculado a cada componente.</p>
+          <div class="setor-tags">
+            <span class="setor-tag">Extrusoras</span><span class="setor-tag">Lubrificação</span><span class="setor-tag">Vibração</span><span class="setor-tag">Preditiva</span>
+          </div>
+        </div>
+
+        <div class="setor-card">
+          <div class="setor-num">03</div>
+          <span class="setor-icon">🐔</span>
+          <span class="setor-badge">AVICULTURA</span>
+          <div class="setor-name">Instalações de Avicultura</div>
+          <p class="setor-desc">Digitalização de galpões avícolas industriais — sistemas de ventilação, nebulização, aquecimento, silos de ração e esteiras. Otimize o conforto térmico e a eficiência operacional com dados em tempo real.</p>
+          <div class="setor-tags">
+            <span class="setor-tag">Ventilação</span><span class="setor-tag">Nebulização</span><span class="setor-tag">Aquecimento</span><span class="setor-tag">Silos</span>
+          </div>
+        </div>
+
+        <div class="setor-card">
+          <div class="setor-num">04</div>
+          <span class="setor-icon">🏭</span>
+          <span class="setor-badge">INDÚSTRIA GERAL</span>
+          <div class="setor-name">Plantas Industriais Completas</div>
+          <p class="setor-desc">Digitalização de plantas industriais completas — linhas de produção, utilidades, tubulações, estruturas e sistemas elétricos. Ideal para planejamento de expansões, auditorias e gestão de ativos.</p>
+          <div class="setor-tags">
+            <span class="setor-tag">BIM</span><span class="setor-tag">As-Built</span><span class="setor-tag">Gestão de Ativos</span><span class="setor-tag">Expansão</span>
+          </div>
+        </div>
+
+        <div class="setor-card">
+          <div class="setor-num">05</div>
+          <span class="setor-icon">🥩</span>
+          <span class="setor-badge">FRIGORÍFICO</span>
+          <div class="setor-name">Frigoríficos & Câmaras Frias</div>
+          <p class="setor-desc">Mapeamento digital de sistemas de refrigeração, câmaras frias, linhas de abate e processamento. Monitoramento contínuo de temperatura e conformidade com rastreabilidade total.</p>
+          <div class="setor-tags">
+            <span class="setor-tag">Refrigeração</span><span class="setor-tag">Câmaras Frias</span><span class="setor-tag">Rastreabilidade</span>
+          </div>
+        </div>
+
+        <div class="setor-card">
+          <div class="setor-num">06</div>
+          <span class="setor-icon">🌿</span>
+          <span class="setor-badge">COOPERATIVAS</span>
+          <div class="setor-name">Cooperativas Agroindustriais</div>
+          <p class="setor-desc">Solução customizada para cooperativas que operam múltiplas unidades. Um painel centralizado com o gêmeo digital de cada unidade — gerenciando manutenção, eficiência e conformidade em escala.</p>
+          <div class="setor-tags">
+            <span class="setor-tag">Multi-unidade</span><span class="setor-tag">Dashboard</span><span class="setor-tag">Gestão Centralizada</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div style="margin-top:64px;padding:48px;background:linear-gradient(135deg,#0A0D18,#0E1420);border:1px solid rgba(43,142,255,.2);display:grid;grid-template-columns:1fr auto;align-items:center;gap:40px;" class="reveal">
+      <div>
+        <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--azul);margin-bottom:12px;">PRONTO PARA DIGITALIZAR SUA PLANTA?</div>
+        <h3 style="font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:2px;margin-bottom:12px;">SOLICITE UMA AVALIAÇÃO<br><span style="color:var(--azul)">GRATUITA</span></h3>
+        <p style="font-size:14px;font-weight:300;color:var(--prata);line-height:1.7;max-width:480px;">Nossa equipe visita sua planta, mapeia os equipamentos e apresenta um projeto personalizado de Gêmeo Digital. Sem compromisso.</p>
+      </div>
+      <button onclick="showTab('contato')" class="btn-primary" style="border:none;cursor:pointer;background:var(--azul);white-space:nowrap;flex-shrink:0;">Agendar Avaliação →</button>
+    </div>
+
+  </div>
+</section>
+</div>
+<!-- /tab-gemeo -->
+
+<!-- ══════════════════════════════════════
+     TAB: PORTFÓLIO
+══════════════════════════════════════ -->
+<div class="tab-content" id="tab-portfolio">
+<div id="portfolio" style="padding-top:40px;">
   <div class="section">
     <div class="sec-label">Nosso trabalho</div>
     <h2 class="sec-title reveal">PORTFÓLIO<br>& CASES</h2>
-    <p class="sec-sub reveal" style="margin-bottom:0;">Projetos entregues com excelência técnica para indústrias do Norte do Paraná e região.</p>
+    <p class="sec-sub reveal" style="margin-bottom:0;">Projetos entregues com excelência técnica para indústrias e agroindústrias do Norte do Paraná e região.</p>
   </div>
   <div class="port-grid reveal">
-
-    <div class="port-card">
-      <div class="port-visual" style="background:linear-gradient(135deg,#141414,#1a1a1a);">
-        <div class="port-bg-text">NR13</div>
-        <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="20" y="10" width="40" height="55" rx="2" stroke="#FF5500" stroke-width="2"/><circle cx="40" cy="37" r="12" stroke="#FF5500" stroke-width="2"/><line x1="40" y1="25" x2="40" y2="20" stroke="#FF5500" stroke-width="2"/><line x1="40" y1="49" x2="40" y2="54" stroke="#FF5500" stroke-width="2"/><line x1="28" y1="37" x2="23" y2="37" stroke="#FF5500" stroke-width="2"/><line x1="57" y1="37" x2="52" y2="37" stroke="#FF5500" stroke-width="2"/><rect x="32" y="58" width="16" height="6" rx="1" stroke="#FF5500" stroke-width="1.5"/></svg>
-      </div>
-      <div class="port-overlay"><div class="port-overlay-title">Inspeção NR-13</div><div class="port-overlay-sub">Caldeira 10t — Agroindústria<br>Londrina, PR</div></div>
-      <div class="port-label"><div class="port-label-title">Inspeção & Laudo NR-13</div><div class="port-label-sub">CALDEIRA — LONDRINA</div></div>
-    </div>
 
     <div class="port-card">
       <div class="port-visual" style="background:linear-gradient(135deg,#111,#191919);">
@@ -525,8 +801,25 @@ footer{background:var(--grafite);border-top:1px solid var(--borda);padding:60px 
         <div class="port-bg-text">RETR</div>
         <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="15" y="20" width="24" height="36" rx="2" stroke="#FFB800" stroke-width="2"/><rect x="41" y="26" width="24" height="24" rx="2" stroke="#FFB800" stroke-width="2"/><line x1="39" y1="38" x2="41" y2="38" stroke="#FFB800" stroke-width="2.5"/><circle cx="27" cy="38" r="6" stroke="#FFB800" stroke-width="1.5"/><rect x="44" y="30" width="6" height="4" rx="1" fill="#FFB800" opacity=".4"/><rect x="44" y="36" width="6" height="4" rx="1" fill="#FFB800" opacity=".4"/><rect x="44" y="42" width="6" height="4" rx="1" fill="#FFB800" opacity=".4"/></svg>
       </div>
-      <div class="port-overlay"><div class="port-overlay-title">Retrofit Industrial</div><div class="port-overlay-sub">Automação de Caldeira Antiga<br>Arapongas, PR</div></div>
-      <div class="port-label"><div class="port-label-title">Retrofit com Automação CLP</div><div class="port-label-sub">CALDEIRA — ARAPONGAS</div></div>
+      <div class="port-overlay"><div class="port-overlay-title">Retrofit Industrial</div><div class="port-overlay-sub">Automação de Extrusora<br>Arapongas, PR</div></div>
+      <div class="port-label"><div class="port-label-title">Retrofit com Automação CLP</div><div class="port-label-sub">EXTRUSORA — ARAPONGAS</div></div>
+    </div>
+
+    <div class="port-card">
+      <div class="port-visual" style="background:linear-gradient(135deg,#131a12,#16201a);">
+        <div class="port-bg-text">GRÃO</div>
+        <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="30" y="15" width="20" height="50" rx="2" stroke="#00C47A" stroke-width="2" fill="rgba(0,196,122,0.05)"/>
+          <path d="M28 25 L20 25 L20 55 L28 55" stroke="#00C47A" stroke-width="1.5"/>
+          <path d="M52 25 L60 25 L60 55 L52 55" stroke="#00C47A" stroke-width="1.5"/>
+          <line x1="30" y1="35" x2="50" y2="35" stroke="#00C47A" stroke-width="1" opacity=".4"/>
+          <line x1="30" y1="45" x2="50" y2="45" stroke="#00C47A" stroke-width="1" opacity=".4"/>
+          <circle cx="40" cy="10" r="3" fill="#00C47A" opacity=".6"/>
+          <path d="M37 13 L43 13" stroke="#00C47A" stroke-width="1.5"/>
+        </svg>
+      </div>
+      <div class="port-overlay"><div class="port-overlay-title">Secador de Grãos</div><div class="port-overlay-sub">Reforma Estrutural<br>Cooperativa — Londrina, PR</div></div>
+      <div class="port-label"><div class="port-label-title">Reforma Secador de Milho</div><div class="port-label-sub">COOPERATIVA — LONDRINA</div></div>
     </div>
 
     <div class="port-card">
@@ -534,8 +827,8 @@ footer{background:var(--grafite);border-top:1px solid var(--borda);padding:60px 
         <div class="port-bg-text">SEG</div>
         <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M40 10 L62 20 L62 42 C62 54 52 64 40 68 C28 64 18 54 18 42 L18 20 Z" stroke="#2B8EFF" stroke-width="2" fill="rgba(43,142,255,0.05)"/><path d="M30 40 L37 47 L52 32" stroke="#2B8EFF" stroke-width="2.5"/></svg>
       </div>
-      <div class="port-overlay"><div class="port-overlay-title">Adequação de Segurança</div><div class="port-overlay-sub">Linha de Vapor NR-13<br>Usina — Porecatu, PR</div></div>
-      <div class="port-label"><div class="port-label-title">Adequação Linha de Vapor</div><div class="port-label-sub">USINA — PORECATU</div></div>
+      <div class="port-overlay"><div class="port-overlay-title">Cibersegurança OT</div><div class="port-overlay-sub">Proteção SCADA Industrial<br>Maringá, PR</div></div>
+      <div class="port-label"><div class="port-label-title">Cibersegurança Industrial OT</div><div class="port-label-sub">INDÚSTRIA — MARINGÁ</div></div>
     </div>
 
     <div class="port-card">
@@ -544,23 +837,28 @@ footer{background:var(--grafite);border-top:1px solid var(--borda);padding:60px 
         <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="20" y="35" width="40" height="25" rx="1" stroke="#2B8EFF" stroke-width="1.5"/><path d="M20 35 L40 20 L60 35" stroke="#2B8EFF" stroke-width="1.5"/><line x1="40" y1="20" x2="40" y2="60" stroke="#2B8EFF" stroke-width="1" opacity=".4"/><line x1="20" y1="35" x2="60" y2="35" stroke="#2B8EFF" stroke-width="1" opacity=".4"/><circle cx="40" cy="20" r="3" fill="#2B8EFF" opacity=".5"/><circle cx="20" cy="35" r="2" fill="#2B8EFF" opacity=".5"/><circle cx="60" cy="35" r="2" fill="#2B8EFF" opacity=".5"/></svg>
         <span class="port-soon">EM BREVE</span>
       </div>
-      <div class="port-overlay"><div class="port-overlay-title">Gêmeo Digital BIM</div><div class="port-overlay-sub">Digitalização de Planta Industrial<br>Lançamento 2026</div></div>
-      <div class="port-label"><div class="port-label-title">Gêmeo Digital Industrial</div><div class="port-label-sub">SERVIÇO 4.0 — 2026</div></div>
+      <div class="port-overlay"><div class="port-overlay-title">Gêmeo Digital BIM</div><div class="port-overlay-sub">Digitalização de Planta de Ração<br>Lançamento 2026</div></div>
+      <div class="port-label"><div class="port-label-title">Gêmeo Digital — Fábrica de Ração</div><div class="port-label-sub">SERVIÇO 4.0 — 2026</div></div>
     </div>
 
   </div>
 </div>
+</div>
+<!-- /tab-portfolio -->
 
-<!-- ══ SOBRE ══ -->
-<section id="sobre">
+<!-- ══════════════════════════════════════
+     TAB: SOBRE
+══════════════════════════════════════ -->
+<div class="tab-content" id="tab-sobre">
+<section id="sobre" style="padding-top:60px;padding-bottom:100px;">
   <div class="section">
     <div class="sec-label">Nossa história</div>
     <h2 class="sec-title reveal">10 ANOS DE<br>WORD METAL</h2>
     <div class="sobre-grid">
       <div class="sobre-left reveal">
         <p class="sobre-text">A <strong>Word Metal</strong> nasceu no Norte do Paraná com uma missão clara: entregar serviços de metalurgia industrial com <strong>qualidade, segurança e responsabilidade técnica</strong> que grandes indústrias da região mereciam ter.</p>
-        <p class="sobre-text">Ao longo de 10 anos, nos especializamos em caldeiras, alta pressão e instalações industriais de alta complexidade — construindo uma reputação sólida baseada em resultado e confiança.</p>
-        <p class="sobre-text">Em 2025, demos o próximo passo: integramos um <strong>time completo de tecnologia</strong> à nossa operação técnica. Hoje somos a única empresa da região capaz de entregar não só o serviço físico, mas também o monitoramento, a digitalização e a proteção dos sistemas dos nossos clientes.</p>
+        <p class="sobre-text">Ao longo de 10 anos, nos especializamos em funilaria, tubulação e instalações industriais de alta complexidade — construindo uma reputação sólida baseada em resultado e confiança com agroindústrias, cooperativas e frigoríficos do Norte do Paraná.</p>
+        <p class="sobre-text">Em 2025, demos o próximo passo: integramos um <strong>time completo de tecnologia</strong> à nossa operação técnica. Hoje somos a única empresa da região capaz de entregar não só o serviço físico, mas também o <strong>Gêmeo Digital</strong>, o monitoramento e a digitalização dos sistemas dos nossos clientes.</p>
         <div class="sobre-values">
           <div class="sobre-val"><span class="sobre-val-icon">🔩</span><div><div class="sobre-val-title">Precisão Técnica</div><div class="sobre-val-text">Cada serviço executado com rigor técnico e documentado conforme normas vigentes.</div></div></div>
           <div class="sobre-val"><span class="sobre-val-icon">🤝</span><div><div class="sobre-val-title">Parceria de Longo Prazo</div><div class="sobre-val-text">Não vendemos serviço — construímos relações. Nossos clientes voltam porque confiam.</div></div></div>
@@ -569,44 +867,34 @@ footer{background:var(--grafite);border-top:1px solid var(--borda);padding:60px 
       </div>
       <div class="sobre-right reveal">
         <div class="sobre-timeline">
-          <div class="st-item"><div class="st-year">2015</div><div class="st-line"><div class="st-dot"></div></div><div class="st-content"><div class="st-title">Fundação da Word Metal</div><div class="st-desc">Início das operações no Norte do Paraná com foco em funilaria industrial e manutenção de caldeiras.</div></div></div>
-          <div class="st-item"><div class="st-year">2017</div><div class="st-line"><div class="st-dot"></div></div><div class="st-content"><div class="st-title">Especialização em NR-13</div><div class="st-desc">Certificação completa em caldeiras e vasos de pressão. Início das parcerias com agroindústrias da região.</div></div></div>
-          <div class="st-item"><div class="st-year">2019</div><div class="st-line"><div class="st-dot"></div></div><div class="st-content"><div class="st-title">Expansão de Serviços</div><div class="st-desc">Adição de montagem de equipamentos, instalação de tubulação e reformas industriais de grande porte.</div></div></div>
-          <div class="st-item"><div class="st-year">2022</div><div class="st-line"><div class="st-dot"></div></div><div class="st-content"><div class="st-title">Time de Alta Pressão</div><div class="st-desc">Formação de equipe especializada em serviços de alta complexidade — caldeiras de grande porte e sistemas de vapor industrial.</div></div></div>
-          <div class="st-item"><div class="st-year">2025</div><div class="st-line"><div class="st-dot"></div></div><div class="st-content"><div class="st-title">Word Metal 4.0</div><div class="st-desc">Integração do time de tecnologia. Lançamento de serviços IoT, manutenção preditiva, cibersegurança industrial e gêmeo digital.</div></div></div>
+          <div class="st-item"><div class="st-year">2015</div><div class="st-line"><div class="st-dot"></div></div><div class="st-content"><div class="st-title">Fundação da Word Metal</div><div class="st-desc">Início das operações no Norte do Paraná com foco em funilaria industrial e manutenção de equipamentos agroindustriais.</div></div></div>
+          <div class="st-item"><div class="st-year">2017</div><div class="st-line"><div class="st-dot"></div></div><div class="st-content"><div class="st-title">Especialização em Agronegócio</div><div class="st-desc">Início das parcerias com cooperativas e agroindústrias da região. Foco em secadores de grãos e linhas de processamento.</div></div></div>
+          <div class="st-item"><div class="st-year">2019</div><div class="st-line"><div class="st-dot"></div></div><div class="st-content"><div class="st-title">Expansão de Serviços</div><div class="st-desc">Adição de montagem de equipamentos, instalação de tubulação e reformas industriais de grande porte em frigoríficos e cooperativas.</div></div></div>
+          <div class="st-item"><div class="st-year">2022</div><div class="st-line"><div class="st-dot"></div></div><div class="st-content"><div class="st-title">Linha de Extrusoras & Avicultura</div><div class="st-desc">Especialização em manutenção e reforma de extrusoras de ração animal e instalações de avicultura industrial — nova frente de negócio.</div></div></div>
+          <div class="st-item"><div class="st-year">2025</div><div class="st-line"><div class="st-dot"></div></div><div class="st-content"><div class="st-title">Word Metal 4.0 — Gêmeo Digital</div><div class="st-desc">Integração do time de tecnologia. Lançamento do Gêmeo Digital Industrial, IoT, manutenção preditiva e cibersegurança para o agronegócio.</div></div></div>
         </div>
       </div>
     </div>
   </div>
 </section>
-
-<!-- ══ EQUIPE ══ -->
-<div class="team-section">
-  <div style="max-width:1280px;margin:0 auto;">
-    <div class="sec-label">Quem faz acontecer</div>
-    <h2 class="sec-title reveal">NOSSO TIME</h2>
-  </div>
-  <div class="team-grid reveal">
-    <div class="tm-card"><div class="tm-avatar av-o">CM</div><div class="tm-name">Carlos Mendes</div><div class="tm-role">Caldeireiro Sênior</div></div>
-    <div class="tm-card"><div class="tm-avatar av-b">RS</div><div class="tm-name">Rodrigo Silva</div><div class="tm-role">Funileiro Industrial</div></div>
-    <div class="tm-card"><div class="tm-avatar av-y">AL</div><div class="tm-name">Anderson Lima</div><div class="tm-role">Técnico de Campo</div></div>
-    <div class="tm-card"><div class="tm-avatar av-g">FC</div><div class="tm-name">Felipe Costa</div><div class="tm-role">Engenheiro de Software</div></div>
-    <div class="tm-card"><div class="tm-avatar av-r">MR</div><div class="tm-name">Mariana Rocha</div><div class="tm-role">Analista de Sistemas</div></div>
-  </div>
 </div>
+<!-- /tab-sobre -->
 
-<!-- ══ ORÇAMENTO ══ -->
-<section id="orcamento">
+<!-- ══════════════════════════════════════
+     TAB: CONTATO
+══════════════════════════════════════ -->
+<div class="tab-content" id="tab-contato">
+<section id="orcamento" style="padding-top:60px;padding-bottom:100px;">
   <div class="section">
     <div class="sec-label">Fale conosco</div>
     <h2 class="sec-title reveal">SOLICITE SEU<br>ORÇAMENTO</h2>
     <div class="orc-grid">
       <div class="orc-info reveal">
-        <p class="sec-sub">Atendemos indústrias em todo o Norte do Paraná e região. Resposta em até 4 horas em dias úteis.</p>
+        <p class="sec-sub">Atendemos indústrias e agroindústrias em todo o Norte do Paraná e região. Resposta em até 4 horas em dias úteis.</p>
         <div class="orc-contacts">
           <div class="orc-contact"><div class="orc-contact-icon">📍</div><div><div class="orc-contact-label">Localização</div><div class="orc-contact-val">Norte do Paraná — PR</div></div></div>
-          <div class="orc-contact"><div class="orc-contact-icon">📱</div><div><div class="orc-contact-label">WhatsApp</div><div class="orc-contact-val">(43) 9 9934 9583</div></div></div>
-          <div class="orc-contact"><div class="orc-contact-icon">📧</div><div><div class="orc-contact-label">E-mail</div><div class="orc-contact-val">wormetal01@gmail.com</div></div></div>
+          <div class="orc-contact"><div class="orc-contact-icon">📱</div><div><div class="orc-contact-label">WhatsApp</div><div class="orc-contact-val">(43) 9 9999-9999</div></div></div>
+          <div class="orc-contact"><div class="orc-contact-icon">📧</div><div><div class="orc-contact-label">E-mail</div><div class="orc-contact-val">contato@wordmetal.com.br</div></div></div>
           <div class="orc-contact"><div class="orc-contact-icon">⏰</div><div><div class="orc-contact-label">Horário</div><div class="orc-contact-val">Seg–Sex: 7h às 18h</div></div></div>
         </div>
         <div style="margin-top:28px;padding:20px;background:var(--grafite);border:1px solid var(--borda);">
@@ -622,21 +910,23 @@ footer{background:var(--grafite);border-top:1px solid var(--borda);padding:60px 
             <div class="fg"><label class="fl">Empresa</label><input class="fi" id="f-empresa" placeholder="Nome da empresa"></div>
           </div>
           <div class="fr2">
-            <div class="fg"><label class="fl">Telefone / WhatsApp</label><input class="fi" id="f-tel" placeholder="(43) 9 9934 9583"></div>
+            <div class="fg"><label class="fl">Telefone / WhatsApp</label><input class="fi" id="f-tel" placeholder="(43) 9 9999-9999"></div>
             <div class="fg"><label class="fl">Cidade</label><input class="fi" id="f-cidade" placeholder="Londrina, PR"></div>
           </div>
           <div class="fg"><label class="fl">Serviço de interesse</label>
             <select class="fs" id="f-servico">
               <option value="">Selecione o serviço</option>
-              <option>Manutenção / Inspeção de Caldeira</option>
-              <option>Laudo NR-13</option>
+              <option>Gêmeo Digital — Secador de Grãos</option>
+              <option>Gêmeo Digital — Extrusora de Ração</option>
+              <option>Gêmeo Digital — Avicultura</option>
+              <option>Gêmeo Digital — Planta Industrial</option>
+              <option>Manutenção Preditiva IoT</option>
               <option>Instalação de Tubulação</option>
               <option>Funilaria Industrial</option>
+              <option>Solda Industrial</option>
+              <option>Reforma de Equipamentos</option>
               <option>Retrofit com Automação</option>
-              <option>Manutenção Preditiva IoT</option>
               <option>Cibersegurança Industrial</option>
-              <option>Gêmeo Digital / BIM</option>
-              <option>Reforma Industrial</option>
               <option>Manutenção como Serviço (MaaS)</option>
               <option>Outro / Não sei ainda</option>
             </select>
@@ -655,41 +945,43 @@ footer{background:var(--grafite);border-top:1px solid var(--borda);padding:60px 
     </div>
   </div>
 </section>
+</div>
+<!-- /tab-contato -->
 
-<!-- ══ FOOTER ══ -->
+<!-- ══ FOOTER (always visible) ══ -->
 <footer>
   <div class="footer-inner">
     <div class="footer-top">
       <div>
         <div class="footer-brand-logo">WORD<span>METAL</span></div>
-        <p class="footer-brand-text">Metalúrgica especializada em caldeiras, alta pressão e instalações industriais. Tecnologia 4.0 integrada ao serviço técnico. Norte do Paraná.</p>
+        <p class="footer-brand-text">Metalúrgica especializada em tubulação industrial, funilaria e Gêmeo Digital. Tecnologia 4.0 integrada ao serviço técnico. Norte do Paraná.</p>
         <div style="font-family:'Space Mono',monospace;font-size:9px;color:rgba(255,85,0,.5);letter-spacing:2px;">FORÇA INDUSTRIAL. INTELIGÊNCIA DIGITAL.</div>
       </div>
       <div>
         <div class="footer-col-title">Serviços</div>
         <div class="footer-links">
-          <a href="#servicos">Caldeiras & Alta Pressão</a>
-          <a href="#servicos">Funilaria & Tubulação</a>
-          <a href="#servicos">Manutenção Preditiva</a>
-          <a href="#servicos">Retrofit & Automação</a>
-          <a href="#servicos">Cibersegurança OT</a>
-          <a href="#servicos">Gêmeo Digital BIM</a>
+          <a href="#" onclick="showTab('servicos');return false;">Funilaria & Tubulação</a>
+          <a href="#" onclick="showTab('servicos');return false;">Solda & Reforma</a>
+          <a href="#" onclick="showTab('servicos');return false;">Manutenção Preditiva</a>
+          <a href="#" onclick="showTab('servicos');return false;">Retrofit & Automação</a>
+          <a href="#" onclick="showTab('servicos');return false;">Cibersegurança OT</a>
+          <a href="#" onclick="showTab('gemeo');return false;">Gêmeo Digital</a>
         </div>
       </div>
       <div>
         <div class="footer-col-title">Empresa</div>
         <div class="footer-links">
-          <a href="#sobre">Nossa História</a>
-          <a href="#sobre">Nosso Time</a>
-          <a href="#portfolio">Portfólio</a>
-          <a href="#orcamento">Contato</a>
+          <a href="#" onclick="showTab('sobre');return false;">Nossa História</a>
+          <a href="#" onclick="showTab('portfolio');return false;">Portfólio</a>
+          <a href="#" onclick="showTab('gemeo');return false;">Gêmeo Digital</a>
+          <a href="#" onclick="showTab('contato');return false;">Contato</a>
         </div>
       </div>
       <div>
         <div class="footer-col-title">Contato</div>
         <div class="footer-links">
-          <a href="#">(43) 9 9934 9583</a>
-          <a href="#">wormetal01@gmail.com</a>
+          <a href="#">(43) 9 9999-9999</a>
+          <a href="#">contato@wordmetal.com.br</a>
           <a href="#">Norte do Paraná — PR</a>
           <a href="#">Seg–Sex: 7h às 18h</a>
         </div>
@@ -697,31 +989,87 @@ footer{background:var(--grafite);border-top:1px solid var(--borda);padding:60px 
     </div>
     <div class="footer-bottom">
       <div class="footer-copy">© 2025 WORD METAL — TODOS OS DIREITOS RESERVADOS</div>
-      <div class="footer-nr">NR-13 · NR-12 · INDÚSTRIA 4.0</div>
+      <div class="footer-nr">INDÚSTRIA 5.0 · GÊMEO DIGITAL · IoT</div>
     </div>
   </div>
 </footer>
 
+<style>
+@keyframes scan{from{transform:translateX(-100%);}to{transform:translateX(100vw);}}
+</style>
+
 <script>
+// Tab system
+function showTab(tabId) {
+  // Hide all tabs
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  
+  // Show selected
+  const tab = document.getElementById('tab-' + tabId);
+  if (tab) tab.classList.add('active');
+  
+  // Update tab buttons
+  const btns = document.querySelectorAll('.tab-btn');
+  btns.forEach(b => {
+    if (b.textContent.toLowerCase().includes(tabId === 'home' ? 'home' :
+        tabId === 'servicos' ? 'serv' :
+        tabId === 'gemeo' ? 'gêmeo' :
+        tabId === 'portfolio' ? 'portf' :
+        tabId === 'sobre' ? 'sobre' :
+        'contato')) {
+      b.classList.add('active');
+    }
+  });
+  
+  // Show/hide tabs bar
+  const tabsBar = document.getElementById('tabs-bar');
+  if (tabId === 'home') {
+    tabsBar.style.display = 'none';
+    tabsBar.style.top = '60px';
+  } else {
+    tabsBar.style.display = 'block';
+  }
+  
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  
+  // Re-trigger reveal animations
+  setTimeout(() => {
+    document.querySelectorAll('#tab-' + tabId + ' .reveal').forEach(el => {
+      el.classList.remove('visible');
+      void el.offsetHeight;
+    });
+    revealObserver.disconnect();
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+  }, 100);
+}
+
+// Show home tab first and hide tab bar
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('tabs-bar').style.display = 'none';
+  // Activate "Home" button
+  const homeBtn = document.querySelector('.tab-btn');
+  if (homeBtn) homeBtn.classList.add('active');
+});
+
 // NAV scroll
 window.addEventListener('scroll', () => {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
 });
 
 // Reveal on scroll
-const observer = new IntersectionObserver((entries) => {
+const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.12 });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
 // Form submit
 function enviarForm() {
   const nome = document.getElementById('f-nome').value.trim();
-  const empresa = document.getElementById('f-empresa').value.trim();
   const tel = document.getElementById('f-tel').value.trim();
   const servico = document.getElementById('f-servico').value;
   if (!nome || !tel || !servico) {
-    alert('Por favor preencha nome, telefone e serviço de interesse.');
+    alert('Por favor, preencha pelo menos nome, telefone e serviço de interesse.');
     return;
   }
   document.getElementById('form-fields').style.display = 'none';
